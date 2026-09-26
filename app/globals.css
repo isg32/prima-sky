@@ -1,26 +1,341 @@
 @import "tailwindcss";
 
+/* --------------------------------------------------------------------------
+   Prima Sky design tokens — sampled from the brochure.
+   -------------------------------------------------------------------------- */
+@theme {
+  --color-blue-deep: #0057a8;
+  --color-blue: #0077c8;
+  --color-sky: #1fa3e0;
+  --color-sky-soft: #8fcbea;
+  --color-paper: #cfe6f1;
+  --color-paper-2: #eaf4f9;
+  --color-mist: #f5fafd;
+  --color-charcoal: #3f4144;
+  --color-ink: #1d2327;
+  --color-slate: #66707a;
+  --color-night: #0b1b2e;
+  --color-night-2: #10263f;
+  --color-rule: #c9dde8;
+  --color-planter: #95b27a;
+  --color-ember: #d2522a;
+
+  --font-sans: var(--font-montserrat), var(--font-gujarati), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --pad: clamp(20px, 5vw, 72px);
+  --header-h: 68px;
+  --grad: linear-gradient(160deg, var(--color-blue-deep) 0%, var(--color-blue) 45%, var(--color-sky) 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--header-h);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-mist);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+html[lang^="gu"] body {
+  font-family: var(--font-gujarati), var(--font-montserrat), sans-serif;
+}
+
+::selection {
+  background: var(--color-sky);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sky);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Type system — brochure-style uppercase display, light + bold pairs.
+   -------------------------------------------------------------------------- */
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+
+  .section {
+    position: relative;
+    padding-block: clamp(80px, 12vw, 168px);
+    scroll-margin-top: var(--header-h);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-slate);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: var(--grad);
+    flex: none;
+  }
+  .on-dark .eyebrow {
+    color: color-mix(in oklab, white 70%, transparent);
+  }
+
+  .display {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    font-size: clamp(34px, 6.2vw, 92px);
+    text-wrap: balance;
+  }
+  .display b,
+  .display strong {
+    font-weight: 700;
+    display: block;
+  }
+  .display-md {
+    font-size: clamp(28px, 4.2vw, 60px);
+  }
+  .display-sm {
+    font-size: clamp(22px, 2.6vw, 36px);
+  }
+  html[lang^="gu"] .display {
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  /* brochure blue rules framing a heading */
+  .ruled {
+    position: relative;
+    padding-block: 22px;
+  }
+  .ruled::before,
+  .ruled::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 64px;
+    height: 3px;
+    background: var(--grad);
+    transform-origin: left;
+    transform: scaleX(var(--rule-s, 1));
+  }
+  .ruled::before {
+    top: 0;
+  }
+  .ruled::after {
+    bottom: 0;
+  }
+  .ruled.center::before,
+  .ruled.center::after {
+    left: 50%;
+    translate: -50% 0;
+    transform-origin: center;
+  }
+
+  .lede {
+    font-size: clamp(15px, 1.25vw, 18px);
+    line-height: 1.7;
+    color: color-mix(in oklab, var(--color-ink) 78%, transparent);
+    max-width: 60ch;
+  }
+  .on-dark .lede {
+    color: color-mix(in oklab, white 78%, transparent);
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-grad {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1.5px color-mix(in oklab, var(--color-blue) 28%, transparent);
+  }
+
+  /* textured paper — the brochure's pale sky stock */
+  .paper {
+    background-color: var(--color-paper);
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--color-paper) 55%, transparent), color-mix(in oklab, var(--color-paper) 55%, transparent)),
+      url("/brand/paper.jpg");
+    background-size: auto, 900px auto;
+  }
+  .grad-bg {
+    background: var(--grad);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition:
+      background-color 0.3s var(--ease-out-expo),
+      color 0.3s var(--ease-out-expo),
+      border-color 0.3s var(--ease-out-expo),
+      transform 0.3s var(--ease-out-expo);
+    white-space: nowrap;
+  }
+  html[lang^="gu"] .btn {
+    letter-spacing: 0.02em;
+    font-size: 14px;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-primary {
+    background: var(--color-blue);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--color-blue-deep);
+  }
+  .btn-ghost {
+    border: 1px solid currentColor;
+  }
+  .btn-ghost:hover {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: white;
+  }
+  .on-dark .btn-ghost:hover {
+    background: white;
+    border-color: white;
+    color: var(--color-night);
+  }
+  .btn-white {
+    background: white;
+    color: var(--color-blue-deep);
+  }
+  .btn-white:hover {
+    background: var(--color-paper-2);
+  }
+  .btn-wa {
+    background: #1f9d55;
+    color: white;
+  }
+  .btn-wa:hover {
+    background: #17844a;
+  }
+  .btn svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+  }
+
+  /* dotted-leader distance lists (Elanza) */
+  .leader {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-block: 14px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .leader i {
+    flex: 1;
+    border-bottom: 1px dotted color-mix(in oklab, var(--color-slate) 50%, transparent);
+    translate: 0 -4px;
+    min-width: 16px;
+  }
+}
+
+/* SplitText line masks */
+.split-line {
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: currentColor;
+  animation: pulse-ring 2s var(--ease-out-expo) infinite;
+  z-index: -1;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
