@@ -143,6 +143,8 @@ export const en = {
     ground: "Ground floor plan",
     foyer: "Foyer",
     lift: "Lift",
+    tapHint: "Tap any room to see its size",
+    swipe: "Swipe",
     note: "Plans are indicative; furniture shown for scale only. Dimensions are approximate and as marked on the brochure plans.",
   },
 
@@ -188,7 +190,8 @@ export const en = {
       { icon: "foyer", label: "Decorative foyer" },
     ],
     siteTitle: "Ground floor site plan",
-    siteHint: "Hover a number to find it on the plan",
+    siteHint: "Tap or hover an item to find it on the plan",
+    swipe: "Swipe to explore the plan",
     legend: [
       "Residential entry / exit",
       "Signage wall with planters",

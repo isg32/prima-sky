@@ -10,7 +10,7 @@ import type { Dict } from "@/lib/i18n/en";
 import { renders } from "@/lib/project";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
-const SHAPES = ["aspect-[4/3]", "aspect-[4/5]", "aspect-[1/1]"];
+const SHAPES = ["md:aspect-[4/3]", "md:aspect-[4/5]", "md:aspect-[1/1]"];
 
 export default function Gallery({ t }: { t: Dict }) {
   const ref = useRef<HTMLElement>(null);
@@ -28,7 +28,7 @@ export default function Gallery({ t }: { t: Dict }) {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add(`${MOTION_OK} and (min-width: 900px)`, () => {
+      mm.add(`${MOTION_OK} and (min-width: 768px)`, () => {
         const el = track.current!;
         const distance = () => el.scrollWidth - window.innerWidth;
         const tween = gsap.to(el, {
@@ -64,6 +64,23 @@ export default function Gallery({ t }: { t: Dict }) {
           });
         });
       });
+
+      // phones: a deck of full-height cards; each one settles back as the next slides over it
+      mm.add(`${MOTION_OK} and (max-width: 767px)`, () => {
+        const cards = gsap.utils.toArray<HTMLElement>("[data-stack]");
+        cards.forEach((card, i) => {
+          const next = cards[i + 1];
+          gsap.from(card.querySelector("[data-pan]"), {
+            scale: 1.25,
+            ease: "none",
+            scrollTrigger: { trigger: card, start: "top bottom", end: "top 20%", scrub: true },
+          });
+          if (!next) return;
+          const st = { trigger: next, start: "top bottom", end: "top 16px", scrub: true };
+          gsap.to(card, { scale: 0.92, transformOrigin: "50% 0%", ease: "none", scrollTrigger: st });
+          gsap.to(card.querySelector("[data-shade]"), { opacity: 0.35, ease: "none", scrollTrigger: st });
+        });
+      });
     },
     { scope: ref },
   );
@@ -79,31 +96,35 @@ export default function Gallery({ t }: { t: Dict }) {
         </div>
       </div>
 
-      <div data-pin className="relative overflow-hidden md:flex md:h-[100svh] md:items-center">
+      <div data-pin className="relative md:flex md:h-[100svh] md:items-center md:overflow-hidden">
         <div
           ref={track}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad)] pb-6 [scrollbar-width:none] md:gap-6 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden"
+          className="flex flex-col gap-5 px-[var(--pad)] md:flex-row md:gap-6"
         >
           {items.map((it, i) => (
-            <figure key={it.src} className="group relative shrink-0 snap-center">
+            <figure key={it.src} data-stack style={{ top: 12 + i * 6 }} className="group sticky shrink-0 will-change-transform md:static md:will-change-auto">
               <button
                 data-card
                 onClick={() => setOpen(i)}
-                className={`relative block w-[78vw] cursor-zoom-in overflow-hidden bg-paper-2 md:h-[58svh] md:w-auto ${SHAPES[i % SHAPES.length]}`}
+                className={`relative block h-[64svh] w-full cursor-zoom-in overflow-hidden bg-paper-2 shadow-[0_24px_50px_-24px_rgba(11,27,46,0.55)] md:h-[58svh] md:w-auto md:shadow-none ${SHAPES[i % SHAPES.length]}`}
                 aria-label={`${t.lightbox.open}: ${it.title}`}
               >
                 <span data-pan className="absolute inset-y-0 -inset-x-[10%] block">
                   <Image src={it.src} alt={it.alt} fill sizes="(min-width: 900px) 46vw, 80vw" className="object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
                 </span>
-                <span className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-white/85 text-blue-deep opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <span data-shade className="pointer-events-none absolute inset-0 bg-night opacity-0 md:hidden" />
+                <span className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-white/85 text-blue-deep transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100">
                   <Icon name="expand" size={18} />
                 </span>
               </button>
-              <figcaption className="mt-4 flex items-baseline gap-4">
-                <span className="mono text-[11px] tracking-widest text-blue">{String(i + 1).padStart(2, "0")}</span>
+              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex items-baseline gap-4 bg-gradient-to-t from-night/85 via-night/40 to-transparent px-5 pt-20 pb-5 text-white md:static md:mt-4 md:bg-none md:p-0 md:text-ink">
+                <span className="mono text-[11px] tracking-widest text-sky-soft md:text-blue">
+                  {String(i + 1).padStart(2, "0")}
+                  <span className="md:hidden"> / {String(items.length).padStart(2, "0")}</span>
+                </span>
                 <span>
                   <span className="block text-[15px] font-semibold tracking-wide uppercase">{it.title}</span>
-                  <span className="mt-1 block max-w-[40ch] text-[13px] leading-snug text-ink/65">{it.caption}</span>
+                  <span className="mt-1 block max-w-[40ch] text-[13px] leading-snug text-white/75 md:text-ink/65">{it.caption}</span>
                 </span>
               </figcaption>
             </figure>

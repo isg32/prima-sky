@@ -12,6 +12,7 @@ import { feet, renders, shopArea, shops } from "@/lib/project";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
 const maxDepth = Math.max(...shops.map((s) => feet(s.d)));
+const maxArea = Math.max(...shops.map(shopArea));
 
 export default function Shops({ t }: { t: Dict }) {
   const ref = useRef<HTMLElement>(null);
@@ -29,6 +30,13 @@ export default function Shops({ t }: { t: Dict }) {
           .from("[data-bar]", { scaleY: 0, transformOrigin: "50% 100%", duration: 1.1, stagger: 0.05 }, 0.3)
           .from("[data-bar-no]", { autoAlpha: 0, y: 8, stagger: 0.04, duration: 0.6 }, 0.9);
         gsap.to("[data-dash]", { backgroundPositionX: "-200px", ease: "none", repeat: -1, duration: 6 });
+        gsap.from("[data-area-bar]", {
+          scaleX: 0,
+          transformOrigin: "left",
+          duration: 1.2,
+          stagger: 0.04,
+          scrollTrigger: { trigger: "[data-shop-list]", start: "top 85%", once: true },
+        });
       });
     },
     { scope: ref },
@@ -56,7 +64,49 @@ export default function Shops({ t }: { t: Dict }) {
 
       {/* the interactive frontage */}
       <div className="wrap mt-14">
-        <div className="-mx-[var(--pad)] overflow-x-auto px-[var(--pad)] pb-4 [scrollbar-width:thin]">
+        {/* phones: a tappable schedule with area bars */}
+        <ol data-shop-list className="border-t border-ink md:hidden">
+          {shops.map((sh, i) => {
+            const on = i === active;
+            const area = shopArea(sh);
+            return (
+              <li key={sh.no} className={`border-b border-rule transition-colors duration-500 ${on ? "bg-mist" : ""}`}>
+                <button onClick={() => setActive(i)} aria-expanded={on} className="grid w-full grid-cols-[52px_1fr_auto] items-center gap-x-3 py-3.5 pr-1 text-left">
+                  <span className={`text-[22px] leading-none font-bold ${on ? "text-blue" : "text-ink"}`}>{sh.no}</span>
+                  <span className="relative h-2 overflow-hidden rounded-full bg-paper-2">
+                    <span
+                      data-area-bar
+                      className="absolute inset-y-0 left-0 rounded-full bg-[linear-gradient(90deg,var(--color-blue-deep),var(--color-sky))]"
+                      style={{ width: `${(area / maxArea) * 100}%` }}
+                    />
+                  </span>
+                  <span className="mono w-[76px] text-right text-[13px] text-ink">
+                    {area} <span className="text-[10px] text-slate">{s.sqft}</span>
+                  </span>
+                </button>
+                <div className={`grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)] ${on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                  <div className="overflow-hidden">
+                    <div className="flex items-center justify-between gap-4 pb-4 pl-[64px]">
+                      <span className="mono text-[13px] text-slate">
+                        {s.size} {sh.w} × {sh.d}
+                      </span>
+                      <a
+                        href="#contact"
+                        tabIndex={on ? 0 : -1}
+                        onClick={() => enquire(`${s.shop} ${sh.no}`)}
+                        className="btn btn-primary !px-4 !py-2.5 !text-[11px]"
+                      >
+                        {t.cta.enquire}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div className="-mx-[var(--pad)] overflow-x-auto px-[var(--pad)] pb-4 [scrollbar-width:thin] max-md:hidden">
           <div data-strip className="relative min-w-[880px]">
             <div className="flex h-[280px] items-end gap-[3px]">
               {shops.map((sh, i) => {
@@ -98,7 +148,7 @@ export default function Shops({ t }: { t: Dict }) {
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.2fr]">
-          <div aria-live="polite" className="flex flex-col justify-between border border-rule bg-mist p-7">
+          <div aria-live="polite" className="flex flex-col justify-between border border-rule bg-mist p-7 max-md:hidden">
             <div>
               <p className="eyebrow mb-3">{s.shop}</p>
               <p className="text-[clamp(48px,6vw,84px)] leading-none font-bold text-blue-deep">{shop.no}</p>

@@ -73,11 +73,11 @@ export default function Hero({ t }: { t: Dict }) {
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_0%_100%,rgba(0,87,168,0.45),transparent_60%)]" />
       </div>
 
-      <div data-hero-content className="wrap flex min-h-[100svh] flex-col justify-end pt-32 pb-10 md:pb-14">
+      <div data-hero-content className="wrap flex min-h-[100svh] flex-col justify-end pt-28 pb-7 md:pt-32 md:pb-14">
         <p data-hero-fade className="eyebrow mb-6 !text-white/75">
           {t.hero.eyebrow}
         </p>
-        <h1 data-hero-title className="display !text-[clamp(40px,8.4vw,132px)] !leading-[0.95]" aria-label={`${t.hero.light} ${t.hero.bold}`}>
+        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${t.hero.light} ${t.hero.bold}`}>
           <span className="block" aria-hidden="true">
             {t.hero.light}
           </span>
@@ -85,22 +85,22 @@ export default function Hero({ t }: { t: Dict }) {
             {t.hero.bold}
           </span>
         </h1>
-        <div className="mt-7 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mt-6 flex flex-col gap-6 md:mt-7 md:flex-row md:items-end md:justify-between">
           <p data-hero-fade className="max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-relaxed text-white/80">
             {t.hero.sub}
           </p>
-          <div data-hero-fade className="flex flex-wrap gap-3">
-            <a href="#contact" className="btn btn-white">
+          <div data-hero-fade className="grid grid-cols-2 gap-3 md:flex md:flex-wrap">
+            <a href="#contact" className="btn btn-white justify-center max-md:!px-4">
               {t.cta.enquire} <Icon name="arrow" />
             </a>
-            <a href="#residences" className="btn btn-ghost text-white">
+            <a href="#residences" className="btn btn-ghost justify-center text-white max-md:!px-4">
               {t.nav[2].label}
             </a>
           </div>
         </div>
 
         {/* signature: the dimension strip */}
-        <dl className="relative mt-10 grid grid-cols-2 md:mt-14 md:grid-cols-6">
+        <dl className="relative mt-8 grid grid-cols-3 md:mt-14 md:grid-cols-6">
           <span data-dims-line className="absolute inset-x-0 top-0 h-px bg-white/35" />
           {t.hero.facts.map((f, i) => {
             const n = Number(f.v);
@@ -108,12 +108,12 @@ export default function Hero({ t }: { t: Dict }) {
               <div
                 key={f.k}
                 data-fact
-                className={`border-white/15 py-4 md:border-r md:px-5 md:py-5 md:first:pl-0 md:last:border-r-0 ${i % 2 === 0 ? "border-r pr-4" : "pl-4"} ${i < 4 ? "border-b md:border-b-0" : ""}`}
+                className={`border-white/15 py-3.5 max-md:px-3 md:border-r md:px-5 md:py-5 md:first:pl-0 md:last:border-r-0 ${i % 3 === 0 ? "max-md:pl-0" : ""} ${i % 3 !== 2 ? "max-md:border-r" : ""} ${i < 3 ? "max-md:border-b" : ""}`}
               >
                 <dt className="mono mb-1.5 text-[10px] tracking-[0.18em] text-sky-soft uppercase">{f.k}</dt>
-                <dd className="text-[clamp(19px,1.9vw,28px)] font-semibold tracking-tight whitespace-nowrap">
+                <dd className="flex flex-col text-[clamp(19px,1.9vw,28px)] font-semibold tracking-tight whitespace-nowrap md:block">
                   <span {...(Number.isFinite(n) && f.v.length <= 3 ? { "data-hero-count": n } : {})}>{f.v}</span>{" "}
-                  <em className="mono text-[0.5em] font-normal tracking-wider text-white/65 not-italic uppercase">{f.em}</em>
+                  <em className="mono text-[10px] font-normal tracking-wider text-white/65 not-italic uppercase md:text-[0.5em]">{f.em}</em>
                 </dd>
               </div>
             );

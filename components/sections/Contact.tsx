@@ -71,7 +71,7 @@ export default function Contact({ t }: { t: Dict }) {
       {/* brochure download */}
       <section className="relative overflow-hidden bg-white">
         <div className="wrap grid items-center gap-10 py-[clamp(70px,9vw,120px)] md:grid-cols-[auto_1fr_auto]">
-          <div data-fade className="relative aspect-[666/986] w-40 rotate-[-4deg] shadow-[0_30px_60px_-20px_rgba(11,27,46,0.4)] md:w-48">
+          <div data-fade className="relative aspect-[666/986] w-36 rotate-[-4deg] shadow-[0_30px_60px_-20px_rgba(11,27,46,0.4)] max-md:mx-auto md:w-48">
             <div className="paper absolute inset-0 flex flex-col items-center justify-center gap-3 p-4">
               <Lotus className="w-16" />
               <span className="text-center text-[15px] leading-none font-bold tracking-wide text-blue">
@@ -90,7 +90,7 @@ export default function Contact({ t }: { t: Dict }) {
               {t.brochure.b}
             </p>
           </div>
-          <a data-fade href={brochureUrl} download="Prima-Sky-Brochure.pdf" className="btn btn-primary justify-self-start">
+          <a data-fade href={brochureUrl} download="Prima-Sky-Brochure.pdf" className="btn btn-primary justify-center max-md:w-full md:justify-self-start">
             <Icon name="download" /> {t.cta.brochure}
             <span className="mono text-[10px] font-normal tracking-wider opacity-70">{t.brochure.size}</span>
           </a>
@@ -113,14 +113,14 @@ export default function Contact({ t }: { t: Dict }) {
             <p data-fade className="eyebrow mt-12 mb-5">
               {c.reach}
             </p>
-            <div data-stagger className="flex flex-wrap gap-3">
-              <a href={waLink(t)} target="_blank" rel="noopener" className="btn btn-wa">
+            <div data-stagger className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+              <a href={waLink(t)} target="_blank" rel="noopener" className="btn btn-wa col-span-2 justify-center">
                 <Icon name="whatsapp" /> {t.cta.whatsapp}
               </a>
-              <a href={telLink} className="btn btn-white">
+              <a href={telLink} className="btn btn-white justify-center max-sm:!px-3">
                 <Icon name="phone" /> {contact.phoneDisplay}
               </a>
-              <a href={mailLink()} className="btn btn-ghost text-white">
+              <a href={mailLink()} className="btn btn-ghost justify-center text-white max-sm:!px-3">
                 <Icon name="mail" /> {t.cta.email}
               </a>
             </div>

@@ -12,6 +12,17 @@ import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 export default function Amenities({ t }: { t: Dict }) {
   const ref = useRef<HTMLElement>(null);
   const [spot, setSpot] = useState<number | null>(null);
+  const scroller = useRef<HTMLDivElement>(null);
+
+  // select a legend item; on phones, slide the plan so its marker is in view
+  function pick(n: number) {
+    setSpot(n);
+    const el = scroller.current;
+    const [x] = sitePlanSpots[n][0];
+    if (el && el.scrollWidth > el.clientWidth) {
+      el.scrollTo({ left: (x / 100) * el.scrollWidth - el.clientWidth / 2, behavior: "smooth" });
+    }
+  }
   const a = t.amenities;
   useReveal(ref);
 
@@ -40,7 +51,7 @@ export default function Amenities({ t }: { t: Dict }) {
   );
 
   return (
-    <section ref={ref} id="amenities" className="on-dark relative overflow-hidden text-white">
+    <section ref={ref} id="amenities" className="on-dark relative overflow-clip text-white">
       <div className="grad-bg section">
         <div aria-hidden="true" className="pointer-events-none absolute -top-20 -right-40 w-[60vw] max-w-[900px] opacity-[0.07]">
           <svg viewBox="0 0 100 80" className="w-full" fill="#fff">
@@ -57,7 +68,7 @@ export default function Amenities({ t }: { t: Dict }) {
 
         <ul data-amen-grid className="wrap relative mt-16 grid grid-cols-2 gap-px sm:grid-cols-3 lg:grid-cols-5">
           {a.items.map((it) => (
-            <li key={it.icon} data-amen className="group flex flex-col gap-4 border-t border-white/20 py-6 pr-4">
+            <li key={it.icon} data-amen className="group flex flex-col gap-3 border-t border-white/20 py-5 pr-3 md:gap-4 md:py-6 md:pr-4">
               <Icon name={it.icon} size={40} strokeWidth={1.2} className="text-white transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-1 group-hover:scale-110" />
               <span className="text-[14px] leading-snug font-medium">{it.label}</span>
             </li>
@@ -81,30 +92,44 @@ export default function Amenities({ t }: { t: Dict }) {
 
       {/* interactive ground floor */}
       <div className="section bg-night">
-        <div className="wrap grid gap-12 lg:grid-cols-[1.5fr_1fr]">
-          <div data-siteplan className="relative order-2 self-start overflow-hidden bg-[#EAF0F3] lg:order-1">
-            <Image src="/plans/ground-floor.jpg" alt={a.siteTitle} width={3552} height={2549} sizes="(min-width:1024px) 60vw, 100vw" className="h-auto w-full" />
-            {Object.entries(sitePlanSpots).flatMap(([n, pts]) =>
-              pts.map(([x, y], k) => {
-                const on = spot === Number(n);
-                return (
-                  <span
-                    key={`${n}-${k}`}
-                    data-spot
-                    style={{ left: `${x}%`, top: `${y}%` }}
-                    className={`pointer-events-none absolute grid h-6 w-6 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[10px] font-bold text-white transition-[background-color,transform] duration-300 md:h-7 md:w-7 ${
-                      on ? "pulse z-10 scale-125 bg-ember text-ember" : "bg-blue"
-                    }`}
-                  >
-                    <span className="text-white">{n}</span>
-                  </span>
-                );
-              }),
-            )}
+        <div className="wrap mb-8 lg:hidden">
+          <p className="eyebrow mb-3">{a.siteTitle}</p>
+          <p className="text-[13px] text-white/60">{a.siteHint}</p>
+        </div>
+        <div className="wrap grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
+          {/* on phones the plan pins to the top while the legend scrolls beneath it */}
+          <div className="sticky top-0 z-10 self-start bg-night pb-3 max-md:-mx-[var(--pad)] max-md:pt-3 lg:static lg:bg-transparent lg:pb-0">
+            <div ref={scroller} className="overflow-x-auto scroll-smooth [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden">
+              <div data-siteplan className="relative min-w-[680px] overflow-hidden bg-[#EAF0F3] md:min-w-0">
+                <Image src="/plans/ground-floor.jpg" alt={a.siteTitle} width={3552} height={2549} sizes="(min-width:1024px) 60vw, 680px" className="h-auto w-full" />
+                {Object.entries(sitePlanSpots).flatMap(([n, pts]) =>
+                  pts.map(([x, y], k) => {
+                    const on = spot === Number(n);
+                    return (
+                      <span
+                        key={`${n}-${k}`}
+                        data-spot
+                        style={{ left: `${x}%`, top: `${y}%` }}
+                        className={`pointer-events-none absolute grid h-6 w-6 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[10px] font-bold text-white transition-[background-color,transform] duration-300 md:h-7 md:w-7 ${
+                          on ? "pulse z-10 scale-125 bg-ember text-ember" : "bg-blue"
+                        }`}
+                      >
+                        <span className="text-white">{n}</span>
+                      </span>
+                    );
+                  }),
+                )}
+              </div>
+            </div>
+            <p className="mono mt-3 flex items-center gap-2 px-[var(--pad)] text-[10px] tracking-[0.2em] text-white/50 uppercase md:hidden">
+              <Icon name="arrow" size={14} /> {a.swipe}
+            </p>
           </div>
-          <div className="order-1 lg:order-2">
-            <p className="eyebrow mb-3">{a.siteTitle}</p>
-            <p className="mb-6 text-[13px] text-white/60">{a.siteHint}</p>
+          <div>
+            <div className="max-lg:hidden">
+              <p className="eyebrow mb-3">{a.siteTitle}</p>
+              <p className="mb-6 text-[13px] text-white/60">{a.siteHint}</p>
+            </div>
             <ol className="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-1">
               {a.legend.map((l, i) => (
                 <li key={l}>
@@ -113,8 +138,8 @@ export default function Amenities({ t }: { t: Dict }) {
                     onMouseLeave={() => setSpot(null)}
                     onFocus={() => setSpot(i + 1)}
                     onBlur={() => setSpot(null)}
-                    onClick={() => setSpot(spot === i + 1 ? null : i + 1)}
-                    className={`flex w-full items-baseline gap-4 border-b border-white/10 py-2.5 text-left text-[14px] transition-colors ${spot === i + 1 ? "text-sky" : "text-white/85 hover:text-white"}`}
+                    onClick={() => pick(i + 1)}
+                    className={`flex w-full items-baseline gap-4 border-b border-white/10 py-3 text-left text-[14px] transition-colors md:py-2.5 ${spot === i + 1 ? "text-sky" : "text-white/85 hover:text-white"}`}
                   >
                     <span className="mono w-6 text-[11px] text-sky-soft">{String(i + 1).padStart(2, "0")}</span>
                     {l}

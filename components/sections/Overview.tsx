@@ -99,7 +99,7 @@ export default function Overview({ t }: { t: Dict }) {
       <div className="wrap mt-[clamp(60px,8vw,110px)]">
         <ul data-stagger className="grid grid-cols-2 border-y border-ink/15 sm:grid-cols-3 lg:grid-cols-5">
           {o.usps.map((u, i) => (
-            <li key={i} className="border-ink/10 px-4 py-8 text-center [&:not(:last-child)]:border-r max-sm:[&:nth-child(2n)]:border-r-0 max-sm:[&:nth-child(-n+4)]:border-b">
+            <li key={i} className="border-ink/10 px-4 py-7 text-center max-sm:last:col-span-2 sm:py-8 [&:not(:last-child)]:border-r max-sm:[&:nth-child(2n)]:border-r-0 max-sm:[&:nth-child(-n+4)]:border-b">
               <span className="text-grad block text-[clamp(30px,3.6vw,52px)] leading-none font-bold">{u.v}</span>
               <span className="mt-3 block text-[13px] leading-snug font-medium tracking-wide text-blue-deep uppercase">{u.l}</span>
             </li>
