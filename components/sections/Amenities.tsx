@@ -96,9 +96,9 @@ export default function Amenities({ t }: { t: Dict }) {
           <p className="eyebrow mb-3">{a.siteTitle}</p>
           <p className="text-[13px] text-white/60">{a.siteHint}</p>
         </div>
-        <div className="wrap grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
+        <div className="wrap grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-12">
           {/* on phones the plan pins to the top while the legend scrolls beneath it */}
-          <div className="sticky top-0 z-10 self-start bg-night pb-3 max-md:-mx-[var(--pad)] max-md:pt-3 lg:static lg:bg-transparent lg:pb-0">
+          <div className="sticky top-0 z-10 min-w-0 self-start bg-night pb-3 max-md:-mx-[var(--pad)] max-md:pt-3 lg:static lg:bg-transparent lg:pb-0">
             <div ref={scroller} className="overflow-x-auto scroll-smooth [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden">
               <div data-siteplan className="relative min-w-[680px] overflow-hidden bg-[#EAF0F3] md:min-w-0">
                 <Image src="/plans/ground-floor.jpg" alt={a.siteTitle} width={3552} height={2549} sizes="(min-width:1024px) 60vw, 680px" className="h-auto w-full" />

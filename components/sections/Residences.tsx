@@ -81,7 +81,7 @@ export default function Residences({ t }: { t: Dict }) {
           })}
         </div>
 
-        <div id="plan-panel" role="tabpanel" aria-label={title} className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_1fr]">
+        <div id="plan-panel" role="tabpanel" aria-label={title} className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
           {/* drawing sheet */}
           <div className="relative border border-rule bg-white p-[clamp(14px,3vw,36px)] max-md:-mx-[var(--pad)] max-md:border-x-0 max-md:px-3">
             {/* readout of the tapped room — plan labels are small on phones */}

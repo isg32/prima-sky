@@ -51,7 +51,7 @@ export default function Header({ t }: { t: Dict }) {
           hidden && !menu ? "-translate-y-full" : ""
         } ${solid ? "bg-mist/85 shadow-[0_1px_0_var(--color-rule)] backdrop-blur-xl backdrop-saturate-150" : ""}`}
       >
-        <div className="wrap flex h-[var(--header-h)] items-center gap-6">
+        <div className="wrap flex h-[var(--header-h)] items-center gap-3 sm:gap-6">
           <a href="#top" aria-label="Prima Sky — top" className="shrink-0">
             <Image
               src="/brand/logo.png"
@@ -59,7 +59,7 @@ export default function Header({ t }: { t: Dict }) {
               width={1664}
               height={646}
               priority
-              className={`h-10 w-auto transition-[filter] duration-500 md:h-11 ${dark ? "brightness-0 invert" : ""}`}
+              className={`h-9 w-auto transition-[filter] duration-500 sm:h-10 md:h-11 ${dark ? "brightness-0 invert" : ""}`}
             />
           </a>
           <nav aria-label="Sections" className={`ml-auto hidden gap-5 text-[12.5px] font-medium whitespace-nowrap xl:flex ${dark ? "text-white/85" : "text-ink/75"}`}>
@@ -69,7 +69,7 @@ export default function Header({ t }: { t: Dict }) {
               </a>
             ))}
           </nav>
-          <div className={`ml-auto flex items-center gap-3 xl:ml-4 ${dark ? "text-white" : "text-ink"}`}>
+          <div className={`ml-auto flex shrink-0 items-center gap-2 sm:gap-3 xl:ml-4 ${dark ? "text-white" : "text-ink"}`}>
             <span className="mono hidden text-[11px] tracking-widest whitespace-nowrap uppercase opacity-70 lg:inline xl:hidden 2xl:inline">{t.priceOnRequest}</span>
             <Link
               href={t.switchTo.href}

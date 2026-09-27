@@ -76,7 +76,14 @@ export default function PlanSVG({
   return (
     <svg
       ref={ref}
-      viewBox={`-10 -10 ${W + 20} ${H + 20}`}
+      viewBox={(() => {
+        // grow the frame so the entry arrow (drawn outside the wall) is never clipped
+        const { x, y, dir } = plan.entry;
+        const minX = Math.min(-10, dir === "right" ? x - 50 : -10);
+        const maxX = Math.max(W + 10, dir === "left" ? x + 50 : 0);
+        const minY = Math.min(-10, dir === "down" ? y - 50 : -10);
+        return `${minX} ${minY} ${maxX - minX} ${H + 10 - minY}`;
+      })()}
       className="h-auto w-full select-none"
       role="img"
       aria-label={`${plan.block}-${plan.type}`}

@@ -70,7 +70,7 @@ export default function Contact({ t }: { t: Dict }) {
     <>
       {/* brochure download */}
       <section className="relative overflow-hidden bg-white">
-        <div className="wrap grid items-center gap-10 py-[clamp(70px,9vw,120px)] md:grid-cols-[auto_1fr_auto]">
+        <div className="wrap grid grid-cols-[minmax(0,1fr)] items-center gap-10 py-[clamp(70px,9vw,120px)] md:grid-cols-[auto_minmax(0,1fr)_auto]">
           <div data-fade className="relative aspect-[666/986] w-36 rotate-[-4deg] shadow-[0_30px_60px_-20px_rgba(11,27,46,0.4)] max-md:mx-auto md:w-48">
             <div className="paper absolute inset-0 flex flex-col items-center justify-center gap-3 p-4">
               <Lotus className="w-16" />
@@ -90,7 +90,7 @@ export default function Contact({ t }: { t: Dict }) {
               {t.brochure.b}
             </p>
           </div>
-          <a data-fade href={brochureUrl} download="Prima-Sky-Brochure.pdf" className="btn btn-primary justify-center max-md:w-full md:justify-self-start">
+          <a data-fade href={brochureUrl} download="Prima-Sky-Brochure.pdf" className="btn btn-primary flex-wrap justify-center gap-y-1 max-md:w-full max-md:whitespace-normal md:justify-self-start">
             <Icon name="download" /> {t.cta.brochure}
             <span className="mono text-[10px] font-normal tracking-wider opacity-70">{t.brochure.size}</span>
           </a>
@@ -103,7 +103,7 @@ export default function Contact({ t }: { t: Dict }) {
         </div>
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-night via-night/90 to-night" />
 
-        <div className="wrap section grid gap-16 lg:grid-cols-[1fr_1fr]">
+        <div className="wrap section grid grid-cols-[minmax(0,1fr)] gap-16 lg:grid-cols-2">
           <div>
             <Heading eyebrow={c.eyebrow} light={c.light} bold={c.bold} size="display-md" />
             <p data-fade className="lede mt-8">
