@@ -1,7 +1,21 @@
 // Language-neutral project facts. Everything here comes from the Prima Sky brochure;
 // copy that needs translating lives in lib/i18n.
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://prima-sky.vercel.app";
+// Empty env vars ("") must fall through too, and a bare host needs a protocol.
+function siteUrl(): string {
+  const raw =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() ||
+    "prima-sky.vercel.app";
+  const url = /^https?:\/\//.test(raw) ? raw : `https://${raw}`;
+  try {
+    return new URL(url).origin;
+  } catch {
+    return "https://prima-sky.vercel.app";
+  }
+}
+
+export const SITE_URL = siteUrl();
 
 export const contact = {
   phoneDisplay: "78028 00918",
