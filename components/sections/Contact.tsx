@@ -127,7 +127,13 @@ export default function Contact({ t }: { t: Dict }) {
               <a href={mailLink()} className="btn btn-ghost justify-center text-white max-sm:!px-3">
                 <Icon name="mail" /> {t.cta.email}
               </a>
+              <Link href={route(t.locale, "previous")} className="btn btn-ghost col-span-2 justify-center text-white/80">
+                {t.previousLink.cta} <Icon name="arrow" />
+              </Link>
             </div>
+            <p data-fade className="mt-3 text-[11px] text-white/40">
+              {t.previousLink.note}
+            </p>
 
             <dl data-stagger className="mt-12 grid gap-8 text-[14.5px] sm:grid-cols-2">
               <div>
@@ -230,13 +236,6 @@ export default function Contact({ t }: { t: Dict }) {
           </details>
           <div className="flex flex-col gap-6 border-t border-white/15 pt-8 md:flex-row md:items-center md:justify-between">
             <PrimaMark tone="white" className="text-[18px]" />
-            <div className="flex flex-col gap-1 md:items-center">
-              <Link href={route(t.locale, "previous")} className="group inline-flex items-center gap-1.5 text-[12px] text-white/60 transition-colors hover:text-white">
-                {t.previousLink.cta}
-                <Icon name="arrow" size={12} className="transition-transform duration-500 group-hover:translate-x-0.5" />
-              </Link>
-              <span className="text-[10.5px] text-white/35">{t.previousLink.note}</span>
-            </div>
             <p className="mono text-[10.5px] tracking-[0.14em] text-white/50 uppercase">
               © {new Date().getFullYear()} {c.rights}
             </p>
