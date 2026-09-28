@@ -1,7 +1,7 @@
 export type Locale = "en" | "gu";
-export type Page = "home" | "sky" | "previous";
+export type Page = "home" | "previous";
 
-const PATHS: Record<Page, string> = { home: "/", sky: "/prima-sky", previous: "/previous-projects" };
+const PATHS: Record<Page, string> = { home: "/", previous: "/previous-projects" };
 
 /** Path of a page in a given language: English at the root, Gujarati under /gu. */
 export function route(locale: string, page: Page): string {

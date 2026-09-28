@@ -5,8 +5,7 @@ import { route, type Page } from "@/lib/routes";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: [Page, number][] = [
     ["home", 1],
-    ["sky", 0.9],
-    ["previous", 0.4],
+    ["previous", 0.5],
   ];
   return pages.flatMap(([page, priority]) => {
     const languages = { "en-IN": `${SITE_URL}${route("en", page)}`, "gu-IN": `${SITE_URL}${route("gu", page)}` };

@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export function buildMetadata(t: Dict, page: Page): Metadata {
-  const m = page === "home" ? t.home.meta : page === "previous" ? t.previous.meta : t.meta;
+  const m = page === "previous" ? t.previous.meta : t.meta;
   const path = route(t.locale, page);
   return {
     title: m.title,
@@ -41,26 +41,13 @@ export const baseMetadata: Metadata = {
   formatDetection: { telephone: false },
 };
 
-export function organizationLd(t: Dict) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Prima",
-    legalName: "Shree Balaji Lotus Buildcon LLP",
-    url: SITE_URL,
-    email: contact.email,
-    telephone: contact.phoneIntl,
-    description: t.home.meta.description,
-  };
-}
-
 export function jsonLd(t: Dict) {
   return {
     "@context": "https://schema.org",
     "@type": "ApartmentComplex",
-    name: "Prima Sky",
+    name: "Prima Sky by Prima",
     description: t.meta.description,
-    url: `${SITE_URL}${route(t.locale, "sky")}`,
+    url: `${SITE_URL}${route(t.locale, "home")}`,
     image: `${SITE_URL}/og.jpg`,
     numberOfAccommodationUnits: 62,
     telephone: contact.phoneIntl,

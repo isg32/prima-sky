@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Intro from "./Intro";
 import StickyBar from "./StickyBar";
 import SmoothScroll from "./motion/SmoothScroll";
 import Amenities from "./sections/Amenities";
@@ -23,14 +24,14 @@ export default function Site({ t }: { t: Dict }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(t)).replace(/</g, "\\u003c") }}
       />
       <SmoothScroll />
+      <Intro line={t.intro} />
       <Header
         t={t}
         nav={t.nav.map((n) => ({ href: `#${n.id}`, label: n.label }))}
-        homeHref={route(t.locale, "home")}
-        switchHref={route(otherLocale(t.locale), "sky")}
-        project={t.home.sky.name}
+        homeHref="#top"
+        switchHref={route(otherLocale(t.locale), "home")}
         showPrice
-        menuExtra={[{ href: route(t.locale, "home"), label: t.backHome }]}
+        menuExtra={[{ href: route(t.locale, "previous"), label: t.previousLink.cta }]}
       />
       <main id="main">
         <Hero t={t} />

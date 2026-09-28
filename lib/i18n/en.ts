@@ -6,7 +6,7 @@ export const en = {
   switchTo: { label: "ગુજરાતી", aria: "ગુજરાતીમાં જુઓ", hrefLang: "gu" },
 
   meta: {
-    title: "Prima Sky · 3 BHK Homes & Shops at Bhadaj, S.P. Ring Road, Ahmedabad",
+    title: "Prima · Prima Sky 3 BHK Homes & Shops at Bhadaj, S.P. Ring Road, Ahmedabad",
     description:
       "Prima Sky by Shree Balaji Lotus Buildcon LLP — a refined retreat of just 62 three-bedroom homes and 15 shops in two 10 & 11 storey towers at Bhadaj, off S.P. Ring Road, Ahmedabad. No TDR, 3-side open views, beside Mahakali & Shiv Temple and Bhadaj Lake Garden.",
     ogAlt: "Prima Sky towers at dusk, Bhadaj, Ahmedabad",
@@ -330,44 +330,9 @@ export const en = {
 
   brand: "Prima",
   developerName: "Shree Balaji Lotus Buildcon LLP",
-  backHome: "All projects",
+  backHome: "Home",
 
-  home: {
-    meta: {
-      title: "Prima · Current Projects by Shree Balaji Lotus Buildcon LLP, Ahmedabad",
-      description:
-        "Prima — residential and commercial projects by Shree Balaji Lotus Buildcon LLP in Ahmedabad. Current projects: Prima Sky, 3 BHK homes & shops at Bhadaj, S.P. Ring Road, and Prima Residency (coming soon).",
-    },
-    nav: [
-      { href: "#projects", label: "Current Projects" },
-      { href: "#contact", label: "Contact" },
-    ],
-    whatsappMessage: "Hi, I'd like to know more about Prima's current projects in Ahmedabad.",
-    intro: "Prima",
-    eyebrow: "Shree Balaji Lotus Buildcon LLP · Ahmedabad",
-    title: "Current Projects",
-    lede: "Thoughtfully planned homes and shops, built around light, open views and a quieter way to live.",
-    sky: {
-      name: "Prima Sky",
-      place: "Bhadaj · S.P. Ring Road · Ahmedabad",
-      type: "3 BHK Homes & Shops",
-      facts: ["62 homes", "15 shops", "10 & 11 storeys"],
-      explore: "Explore Prima Sky",
-      enquire: "Enquire",
-      brochure: "Download brochure",
-    },
-    residency: {
-      name: "Prima Residency",
-      status: "Coming soon",
-      blurb: "Details will be announced soon. Register your interest and we'll share them with you first.",
-      enquire: "Register interest",
-    },
-    previous: {
-      cta: "Previous Associated Projects",
-      note: "Our current partners were associated with these earlier projects.",
-    },
-    formOptions: ["Prima Sky — 3 BHK home", "Prima Sky — Shop", "Prima Residency", "Other"],
-  },
+  previousLink: { cta: "Previous Associated Projects", note: "Our current partners were associated with these earlier projects." },
 
   previous: {
     meta: {

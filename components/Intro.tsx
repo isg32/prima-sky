@@ -1,12 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Lotus from "./brand/Lotus";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
 /** Opening curtain: the lotus blooms petal by petal, then the blue panel lifts off the hero. */
 export default function Intro({ line }: { line: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  // unmount through React; removing the node by hand breaks later navigations
+  const [done, setDone] = useState(false);
 
   useGSAP(
     () => {
@@ -19,7 +21,7 @@ export default function Intro({ line }: { line: string }) {
           onComplete: () => {
             delete document.documentElement.dataset.intro;
             window.__lenis?.start();
-            ref.current?.remove();
+            setDone(true);
           },
         });
         tl.set(ref.current, { autoAlpha: 1 })
@@ -37,12 +39,14 @@ export default function Intro({ line }: { line: string }) {
           .add(() => window.dispatchEvent(new Event("prima:intro")), "-=0.75");
       });
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        ref.current?.remove();
+        setDone(true);
         window.dispatchEvent(new Event("prima:intro"));
       });
     },
     { scope: ref },
   );
+
+  if (done) return null;
 
   return (
     <div
