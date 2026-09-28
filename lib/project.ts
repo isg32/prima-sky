@@ -22,8 +22,9 @@ export const contact = {
   phoneIntl: "+917802800918",
   whatsapp: "917802800918",
   email: "shreebalajilotusbuildcon@gmail.com",
-  mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=Shreeyam%20Party%20Plot%2C%20Bhadaj%2C%20Ahmedabad%20380060",
+  // Google Maps listing for "Prima Sky" (pin at 23.0868226, 72.4860787)
+  mapsUrl: "https://maps.app.goo.gl/2G9nDrp3PEX1HuyU6",
+  geo: { lat: 23.0868226, lng: 72.4860787 },
   // TODO: replace with the Gujarat RERA registration number once issued.
   rera: null as string | null,
 };

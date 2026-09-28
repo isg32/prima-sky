@@ -52,6 +52,8 @@ export function jsonLd(t: Dict) {
     numberOfAccommodationUnits: 62,
     telephone: contact.phoneIntl,
     email: contact.email,
+    hasMap: contact.mapsUrl,
+    geo: { "@type": "GeoCoordinates", latitude: contact.geo.lat, longitude: contact.geo.lng },
     address: {
       "@type": "PostalAddress",
       streetAddress: "Bh. Shreeyam Party Plot, Nr. Bhadaj Bus Stand, Bhadaj",
