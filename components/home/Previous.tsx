@@ -63,10 +63,23 @@ export default function Previous({ t }: { t: Dict }) {
                     </a>
                     <div className="flex flex-1 flex-col p-5">
                       <h2 className="text-[16px] font-semibold tracking-wide uppercase">{proj.name}</h2>
-                      <p className="mt-2 mb-5 flex items-start gap-1.5 text-[12.5px] text-slate">
-                        <Icon name="pin" size={14} className="mt-0.5 shrink-0" />
-                        {proj.location[lang]}
-                      </p>
+                      {proj.mapUrl ? (
+                        <a
+                          href={proj.mapUrl}
+                          target="_blank"
+                          rel="noopener"
+                          className="mt-2 mb-5 flex items-start gap-1.5 text-[12.5px] text-slate underline decoration-ink/20 underline-offset-4 transition-colors hover:text-blue hover:decoration-blue"
+                        >
+                          <Icon name="pin" size={14} className="mt-0.5 shrink-0" />
+                          {proj.location[lang]}
+                          <Icon name="arrowUpRight" size={12} className="mt-0.5 shrink-0" />
+                        </a>
+                      ) : (
+                        <p className="mt-2 mb-5 flex items-start gap-1.5 text-[12.5px] text-slate">
+                          <Icon name="pin" size={14} className="mt-0.5 shrink-0" />
+                          {proj.location[lang]}
+                        </p>
+                      )}
                       <a
                         href={proj.brochure}
                         download={proj.downloadAs}

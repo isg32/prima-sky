@@ -11,6 +11,7 @@ export type PreviousProject = {
   brochure: string; // path under /public
   downloadAs: string; // tidy filename for the download
   sizeMB: number;
+  mapUrl?: string; // Google Maps pin, when supplied
 };
 
 const pdf = (file: string) => `/previous/${encodeURIComponent(file)}`;
@@ -26,6 +27,7 @@ export const previousProjects: PreviousProject[] = [
     brochure: pdf("R17_PR_DIPAK BHAI OGNAJ_11-07-26.pdf"),
     downloadAs: "R17-Residence-Plans.pdf",
     sizeMB: 2,
+    mapUrl: "https://www.google.com/maps?q=23.106139,72.519194",
   },
   {
     name: "Elite One13",
