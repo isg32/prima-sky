@@ -236,8 +236,14 @@ img {
   .btn-primary:hover {
     background: var(--color-blue-deep);
   }
+  /* ghost buttons own their text colour (ink on light, white on dark) so a text-*
+     utility never overrides the hover colour and leaves the label invisible */
   .btn-ghost {
     border: 1px solid currentColor;
+    color: var(--color-ink);
+  }
+  .on-dark .btn-ghost {
+    color: white;
   }
   .btn-ghost:hover {
     background: var(--color-ink);

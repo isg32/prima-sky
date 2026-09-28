@@ -153,7 +153,7 @@ export default function Residences({ t }: { t: Dict }) {
                 })}
               </ul>
               <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
-                <button onClick={() => setBox({ items: originals, i: idx })} className="btn btn-ghost justify-center !px-5 !py-3 text-ink">
+                <button onClick={() => setBox({ items: originals, i: idx })} className="btn btn-ghost justify-center !px-5 !py-3">
                   <Icon name="expand" /> {r.viewOriginal}
                 </button>
                 <a href="#contact" onClick={() => enquire(t.contact.form.options[plan.type])} className="btn btn-primary justify-center !px-5 !py-3">

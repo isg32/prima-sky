@@ -124,10 +124,10 @@ export default function Contact({ t }: { t: Dict }) {
               <a href={telLink} className="btn btn-white justify-center max-sm:!px-3">
                 <Icon name="phone" /> {contact.phoneDisplay}
               </a>
-              <a href={mailLink()} className="btn btn-ghost justify-center text-white max-sm:!px-3">
+              <a href={mailLink()} className="btn btn-ghost justify-center max-sm:!px-3">
                 <Icon name="mail" /> {t.cta.email}
               </a>
-              <Link href={route(t.locale, "previous")} className="btn btn-ghost col-span-2 justify-center text-white/80">
+              <Link href={route(t.locale, "previous")} className="btn btn-ghost col-span-2 justify-center">
                 {t.previousLink.cta} <Icon name="arrow" />
               </Link>
             </div>

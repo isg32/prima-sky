@@ -105,7 +105,7 @@ export default function Hero({ t }: { t: Dict }) {
             <a href="#contact" className="btn btn-white justify-center max-md:!px-4">
               {t.cta.enquire} <Icon name="arrow" />
             </a>
-            <a href="#residences" className="btn btn-ghost justify-center text-white max-md:!px-4">
+            <a href="#residences" className="btn btn-ghost justify-center max-md:!px-4">
               {t.nav[2].label}
             </a>
           </div>

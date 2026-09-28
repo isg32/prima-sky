@@ -44,7 +44,7 @@ export default function Location({ t }: { t: Dict }) {
           <Heading eyebrow={l.eyebrow} light={l.light} bold={l.bold} size="display-md" tab />
           <div data-fade>
             <p className="lede">{l.lede}</p>
-            <a href={contact.mapsUrl} target="_blank" rel="noopener" className="btn btn-ghost mt-6 text-ink">
+            <a href={contact.mapsUrl} target="_blank" rel="noopener" className="btn btn-ghost mt-6">
               <Icon name="map" /> {l.maps}
             </a>
           </div>
