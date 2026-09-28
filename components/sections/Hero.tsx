@@ -74,6 +74,15 @@ export default function Hero({ t }: { t: Dict }) {
       </div>
 
       <div data-hero-content className="wrap flex min-h-[100svh] flex-col justify-end pt-28 pb-7 md:pt-32 md:pb-14">
+        <Image
+          data-hero-fade
+          src="/brand/logo.png"
+          alt="Prima Sky — 3 BHK Homes & Shops"
+          width={1664}
+          height={646}
+          priority
+          className="mb-7 h-12 w-auto self-start brightness-0 invert md:h-14"
+        />
         <p data-hero-fade className="eyebrow mb-6 !text-white/75">
           {t.hero.eyebrow}
         </p>

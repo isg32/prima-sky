@@ -9,7 +9,7 @@ import { telLink, waLink } from "@/lib/links";
  * Mobile-only call / WhatsApp bar, as on the Elanza listing. It stays out of the
  * way over the hero and the contact section, where the same actions are on screen.
  */
-export default function StickyBar({ t }: { t: Dict }) {
+export default function StickyBar({ t, waText }: { t: Dict; waText?: string }) {
   const [pastHero, setPastHero] = useState(false);
   const [atContact, setAtContact] = useState(false);
 
@@ -36,7 +36,7 @@ export default function StickyBar({ t }: { t: Dict }) {
       }`}
     >
       <a
-        href={waLink(t)}
+        href={waLink(t, waText)}
         target="_blank"
         rel="noopener"
         tabIndex={show ? 0 : -1}

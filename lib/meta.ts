@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { Dict } from "./i18n/en";
 import { SITE_URL, contact } from "./project";
+import { route, type Page } from "./routes";
 
 export const viewport: Viewport = {
   themeColor: "#0057A8",
@@ -9,33 +10,47 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export function buildMetadata(t: Dict): Metadata {
-  const path = t.locale === "gu" ? "/gu" : "/";
+export function buildMetadata(t: Dict, page: Page): Metadata {
+  const m = page === "home" ? t.home.meta : page === "previous" ? t.previous.meta : t.meta;
+  const path = route(t.locale, page);
   return {
-    metadataBase: new URL(SITE_URL),
-    title: t.meta.title,
-    description: t.meta.description,
+    title: m.title,
+    description: m.description,
     alternates: {
       canonical: path,
-      languages: { "en-IN": "/", "gu-IN": "/gu", "x-default": "/" },
+      languages: { "en-IN": route("en", page), "gu-IN": route("gu", page), "x-default": route("en", page) },
     },
     openGraph: {
       type: "website",
       url: path,
-      siteName: "Prima Sky",
+      siteName: "Prima",
       locale: t.locale === "gu" ? "gu_IN" : "en_IN",
-      title: t.meta.title,
-      description: t.meta.description,
+      title: m.title,
+      description: m.description,
       images: [{ url: "/og.jpg", width: 1200, height: 630, alt: t.meta.ogAlt }],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: t.meta.title,
-      description: t.meta.description,
-      images: ["/og.jpg"],
-    },
-    robots: { index: true, follow: true, "max-image-preview": "large" },
-    formatDetection: { telephone: false },
+    twitter: { card: "summary_large_image", title: m.title, description: m.description, images: ["/og.jpg"] },
+  };
+}
+
+/** Site-wide defaults, set once in each root layout. */
+export const baseMetadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  applicationName: "Prima",
+  robots: { index: true, follow: true, "max-image-preview": "large" },
+  formatDetection: { telephone: false },
+};
+
+export function organizationLd(t: Dict) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Prima",
+    legalName: "Shree Balaji Lotus Buildcon LLP",
+    url: SITE_URL,
+    email: contact.email,
+    telephone: contact.phoneIntl,
+    description: t.home.meta.description,
   };
 }
 
@@ -45,7 +60,7 @@ export function jsonLd(t: Dict) {
     "@type": "ApartmentComplex",
     name: "Prima Sky",
     description: t.meta.description,
-    url: SITE_URL,
+    url: `${SITE_URL}${route(t.locale, "sky")}`,
     image: `${SITE_URL}/og.jpg`,
     numberOfAccommodationUnits: 62,
     telephone: contact.phoneIntl,

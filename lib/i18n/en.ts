@@ -3,7 +3,7 @@ import type { RoomKind } from "../project";
 export const en = {
   locale: "en",
   htmlLang: "en-IN",
-  switchTo: { href: "/gu", label: "ગુ", aria: "ગુજરાતીમાં જુઓ" },
+  switchTo: { label: "ગુજરાતી", aria: "ગુજરાતીમાં જુઓ", hrefLang: "gu" },
 
   meta: {
     title: "Prima Sky · 3 BHK Homes & Shops at Bhadaj, S.P. Ring Road, Ahmedabad",
@@ -326,6 +326,60 @@ export const en = {
       "Subject to Ahmedabad jurisdiction.",
     ],
     rights: "Shree Balaji Lotus Buildcon LLP. All rights reserved.",
+  },
+
+  brand: "Prima",
+  developerName: "Shree Balaji Lotus Buildcon LLP",
+  backHome: "All projects",
+
+  home: {
+    meta: {
+      title: "Prima · Current Projects by Shree Balaji Lotus Buildcon LLP, Ahmedabad",
+      description:
+        "Prima — residential and commercial projects by Shree Balaji Lotus Buildcon LLP in Ahmedabad. Current projects: Prima Sky, 3 BHK homes & shops at Bhadaj, S.P. Ring Road, and Prima Residency (coming soon).",
+    },
+    nav: [
+      { href: "#projects", label: "Current Projects" },
+      { href: "#contact", label: "Contact" },
+    ],
+    whatsappMessage: "Hi, I'd like to know more about Prima's current projects in Ahmedabad.",
+    intro: "Prima",
+    eyebrow: "Shree Balaji Lotus Buildcon LLP · Ahmedabad",
+    title: "Current Projects",
+    lede: "Thoughtfully planned homes and shops, built around light, open views and a quieter way to live.",
+    sky: {
+      name: "Prima Sky",
+      place: "Bhadaj · S.P. Ring Road · Ahmedabad",
+      type: "3 BHK Homes & Shops",
+      facts: ["62 homes", "15 shops", "10 & 11 storeys"],
+      explore: "Explore Prima Sky",
+      enquire: "Enquire",
+      brochure: "Download brochure",
+    },
+    residency: {
+      name: "Prima Residency",
+      status: "Coming soon",
+      blurb: "Details will be announced soon. Register your interest and we'll share them with you first.",
+      enquire: "Register interest",
+    },
+    previous: {
+      cta: "Previous Associated Projects",
+      note: "Our current partners were associated with these earlier projects.",
+    },
+    formOptions: ["Prima Sky — 3 BHK home", "Prima Sky — Shop", "Prima Residency", "Other"],
+  },
+
+  previous: {
+    meta: {
+      title: "Previous Associated Projects · Prima",
+      description: "An overview of earlier projects that Prima's current partners were associated with.",
+    },
+    eyebrow: "Prima",
+    title: "Previous Associated Projects",
+    note: "Our current partners were associated with the projects below.",
+    tbd: "Details to be updated",
+    type: "Type",
+    location: "Location",
   },
 
   lightbox: { close: "Close", prev: "Previous image", next: "Next image", open: "Open image" },

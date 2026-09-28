@@ -1,14 +1,36 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import PrimaMark from "./brand/PrimaMark";
 import { useEffect, useRef, useState } from "react";
 import Icon from "./ui/Icon";
 import type { Dict } from "@/lib/i18n/en";
 import { waLink } from "@/lib/links";
 import { gsap } from "@/lib/gsap";
 
-export default function Header({ t }: { t: Dict }) {
+export type NavItem = { href: string; label: string };
+
+export default function Header({
+  t,
+  nav,
+  homeHref,
+  switchHref,
+  project,
+  light = false,
+  waText,
+  showPrice = false,
+  menuExtra = [],
+}: {
+  t: Dict;
+  nav: NavItem[];
+  homeHref: string;
+  switchHref: string;
+  project?: string; // shown beside the Prima mark on a project page
+  light?: boolean; // page opens on a light background (no dark hero)
+  waText?: string;
+  showPrice?: boolean;
+  menuExtra?: NavItem[];
+}) {
   const [solid, setSolid] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -39,7 +61,7 @@ export default function Header({ t }: { t: Dict }) {
     }
   }, [menu]);
 
-  const dark = !solid;
+  const dark = !solid && !light;
 
   return (
     <>
@@ -52,34 +74,39 @@ export default function Header({ t }: { t: Dict }) {
         } ${solid ? "bg-mist/85 shadow-[0_1px_0_var(--color-rule)] backdrop-blur-xl backdrop-saturate-150" : ""}`}
       >
         <div className="wrap flex h-[var(--header-h)] items-center gap-3 sm:gap-6">
-          <a href="#top" aria-label="Prima Sky — top" className="shrink-0">
-            <Image
-              src="/brand/logo.png"
-              alt="Prima Sky"
-              width={1664}
-              height={646}
-              priority
-              className={`h-9 w-auto transition-[filter] duration-500 sm:h-10 md:h-11 ${dark ? "brightness-0 invert" : ""}`}
-            />
-          </a>
+          <Link href={homeHref} aria-label={`${t.brand} — ${t.backHome}`} className="flex shrink-0 items-center gap-3 text-[15px] md:text-[17px]">
+            <PrimaMark tone={dark ? "white" : "brand"} />
+            {project && (
+              <span className={`hidden border-l pl-3 text-[11px] font-semibold tracking-[0.2em] uppercase sm:inline ${dark ? "border-white/30 text-white/80" : "border-ink/20 text-ink/70"}`}>
+                {project}
+              </span>
+            )}
+          </Link>
           <nav aria-label="Sections" className={`ml-auto hidden gap-5 text-[12.5px] font-medium whitespace-nowrap xl:flex ${dark ? "text-white/85" : "text-ink/75"}`}>
-            {t.nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="relative py-1 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-500 hover:after:scale-x-100">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href} className="relative py-1 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-500 hover:after:scale-x-100">
                 {n.label}
               </a>
             ))}
           </nav>
           <div className={`ml-auto flex shrink-0 items-center gap-2 sm:gap-3 xl:ml-4 ${dark ? "text-white" : "text-ink"}`}>
-            <span className="mono hidden text-[11px] tracking-widest whitespace-nowrap uppercase opacity-70 lg:inline xl:hidden 2xl:inline">{t.priceOnRequest}</span>
+            {showPrice && (
+              <span className="mono hidden text-[11px] tracking-widest whitespace-nowrap uppercase opacity-70 lg:inline xl:hidden 2xl:inline">{t.priceOnRequest}</span>
+            )}
             <Link
-              href={t.switchTo.href}
+              href={switchHref}
               aria-label={t.switchTo.aria}
-              hrefLang={t.switchTo.href === "/" ? "en" : "gu"}
-              className="grid h-9 min-w-9 place-items-center rounded-full border border-current/30 px-2 text-xs font-semibold transition-colors hover:border-current"
+              hrefLang={t.switchTo.hrefLang}
+              lang={t.switchTo.hrefLang}
+              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-current/30 px-3.5 text-[13px] font-semibold whitespace-nowrap transition-colors hover:border-current"
             >
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z" />
+              </svg>
               {t.switchTo.label}
             </Link>
-            <a href={waLink(t)} target="_blank" rel="noopener" className="btn btn-wa hidden !py-2.5 md:inline-flex">
+            <a href={waLink(t, waText)} target="_blank" rel="noopener" className="btn btn-wa hidden !py-2.5 md:inline-flex">
               <Icon name="whatsapp" /> {t.cta.whatsapp}
             </a>
             <button
@@ -100,11 +127,11 @@ export default function Header({ t }: { t: Dict }) {
         <div id="menu" ref={panel} className="grad-bg fixed inset-0 z-[79] flex flex-col justify-between overflow-y-auto px-[var(--pad)] pt-28 pb-10 text-white xl:hidden">
           <nav aria-label="Menu">
             <ol className="space-y-1">
-              {t.nav.map((n, i) => (
-                <li key={n.id} className="overflow-hidden">
+              {[...nav, ...menuExtra].map((n, i) => (
+                <li key={n.href} className="overflow-hidden">
                   <a
                     data-m
-                    href={`#${n.id}`}
+                    href={n.href}
                     onClick={() => setMenu(false)}
                     className="flex items-baseline gap-4 py-1.5 text-[clamp(28px,8vw,48px)] font-light uppercase"
                   >
@@ -116,7 +143,7 @@ export default function Header({ t }: { t: Dict }) {
             </ol>
           </nav>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href={waLink(t)} target="_blank" rel="noopener" className="btn btn-white">
+            <a href={waLink(t, waText)} target="_blank" rel="noopener" className="btn btn-white">
               <Icon name="whatsapp" /> {t.cta.whatsapp}
             </a>
           </div>

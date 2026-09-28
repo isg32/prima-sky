@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Heading from "../ui/Heading";
 import Icon from "../ui/Icon";
 import Lotus from "../brand/Lotus";
+import PrimaMark from "../brand/PrimaMark";
 import { useReveal } from "../motion/useReveal";
 import type { Dict } from "@/lib/i18n/en";
 import { mailLink, telLink, waLink } from "@/lib/links";
@@ -12,9 +13,24 @@ import { brochureUrl, contact, renders } from "@/lib/project";
 
 type Status = "idle" | "sending" | "ok" | "error" | "notConfigured" | "invalid";
 
-export default function Contact({ t }: { t: Dict }) {
+export default function Contact({
+  t,
+  options: optionList,
+  brochure = true,
+  footerMark = "sky",
+  waText,
+  eyebrow,
+}: {
+  t: Dict;
+  options?: string[];
+  brochure?: boolean;
+  footerMark?: "sky" | "prima";
+  waText?: string;
+  eyebrow?: string;
+}) {
   const ref = useRef<HTMLElement>(null);
-  const [interest, setInterest] = useState(t.contact.form.options[0]);
+  const baseOptions = optionList ?? t.contact.form.options;
+  const [interest, setInterest] = useState(baseOptions[0]);
   const [status, setStatus] = useState<Status>("idle");
   useReveal(ref);
   const c = t.contact;
@@ -60,7 +76,7 @@ export default function Contact({ t }: { t: Dict }) {
     notConfigured: f.notConfigured,
     invalid: f.invalid,
   };
-  const options = f.options.includes(interest) ? f.options : [interest, ...f.options];
+  const options = baseOptions.includes(interest) ? baseOptions : [interest, ...baseOptions];
   const field =
     "peer w-full border-0 border-b border-white/25 bg-transparent px-0 pt-6 pb-2.5 text-[16px] text-white placeholder-transparent transition-colors focus:border-sky focus:ring-0 focus:outline-none";
   const label =
@@ -69,6 +85,7 @@ export default function Contact({ t }: { t: Dict }) {
   return (
     <>
       {/* brochure download */}
+      {brochure && (
       <section className="relative overflow-hidden bg-white">
         <div className="wrap grid grid-cols-[minmax(0,1fr)] items-center gap-10 py-[clamp(70px,9vw,120px)] md:grid-cols-[auto_minmax(0,1fr)_auto]">
           <div data-fade className="relative aspect-[666/986] w-36 rotate-[-4deg] shadow-[0_30px_60px_-20px_rgba(11,27,46,0.4)] max-md:mx-auto md:w-48">
@@ -96,6 +113,7 @@ export default function Contact({ t }: { t: Dict }) {
           </a>
         </div>
       </section>
+      )}
 
       <section ref={ref} id="contact" className="on-dark relative isolate overflow-hidden bg-night text-white">
         <div className="absolute inset-0 -z-10 opacity-30">
@@ -105,7 +123,7 @@ export default function Contact({ t }: { t: Dict }) {
 
         <div className="wrap section grid grid-cols-[minmax(0,1fr)] gap-16 lg:grid-cols-2">
           <div>
-            <Heading eyebrow={c.eyebrow} light={c.light} bold={c.bold} size="display-md" />
+            <Heading eyebrow={eyebrow ?? c.eyebrow} light={c.light} bold={c.bold} size="display-md" />
             <p data-fade className="lede mt-8">
               {c.body}
             </p>
@@ -114,7 +132,7 @@ export default function Contact({ t }: { t: Dict }) {
               {c.reach}
             </p>
             <div data-stagger className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-              <a href={waLink(t)} target="_blank" rel="noopener" className="btn btn-wa col-span-2 justify-center">
+              <a href={waLink(t, waText)} target="_blank" rel="noopener" className="btn btn-wa col-span-2 justify-center">
                 <Icon name="whatsapp" /> {t.cta.whatsapp}
               </a>
               <a href={telLink} className="btn btn-white justify-center max-sm:!px-3">
@@ -225,7 +243,11 @@ export default function Contact({ t }: { t: Dict }) {
             </ul>
           </details>
           <div className="flex flex-col gap-6 border-t border-white/15 pt-8 md:flex-row md:items-center md:justify-between">
-            <Image src="/brand/logo.png" alt="Prima Sky" width={1664} height={646} className="h-12 w-auto self-start object-contain brightness-0 invert" />
+            {footerMark === "prima" ? (
+              <PrimaMark tone="white" className="text-[18px]" />
+            ) : (
+              <Image src="/brand/logo.png" alt="Prima Sky" width={1664} height={646} className="h-12 w-auto self-start object-contain brightness-0 invert" />
+            )}
             <p className="mono text-[10.5px] tracking-[0.14em] text-white/50 uppercase">
               © {new Date().getFullYear()} {c.rights}
             </p>

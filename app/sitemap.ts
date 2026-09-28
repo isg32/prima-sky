@@ -1,10 +1,20 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/project";
+import { route, type Page } from "@/lib/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = { "en-IN": `${SITE_URL}/`, "gu-IN": `${SITE_URL}/gu` };
-  return [
-    { url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 1, alternates: { languages } },
-    { url: `${SITE_URL}/gu`, changeFrequency: "monthly", priority: 0.8, alternates: { languages } },
+  const pages: [Page, number][] = [
+    ["home", 1],
+    ["sky", 0.9],
+    ["previous", 0.4],
   ];
+  return pages.flatMap(([page, priority]) => {
+    const languages = { "en-IN": `${SITE_URL}${route("en", page)}`, "gu-IN": `${SITE_URL}${route("gu", page)}` };
+    return (["en", "gu"] as const).map((l) => ({
+      url: `${SITE_URL}${route(l, page)}`,
+      changeFrequency: "monthly" as const,
+      priority: l === "en" ? priority : priority * 0.9,
+      alternates: { languages },
+    }));
+  });
 }
