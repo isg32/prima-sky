@@ -339,3 +339,27 @@ img {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Opening curtain — painted by the server so the page never flashes first.
+   -------------------------------------------------------------------------- */
+/* hidden with visibility only — CSS transforms here would fight GSAP's SVG transforms */
+.intro-curtain [data-petal],
+.intro-curtain [data-intro-line] {
+  visibility: hidden;
+}
+/* safety net if scripts never run: lift the curtain after a few seconds */
+.intro-curtain {
+  animation: intro-fallback 0.6s ease 7s forwards;
+}
+@keyframes intro-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-curtain {
+    display: none;
+  }
+}

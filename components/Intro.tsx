@@ -24,16 +24,13 @@ export default function Intro({ line }: { line: string }) {
             setDone(true);
           },
         });
-        tl.set(ref.current, { autoAlpha: 1 })
-          .from(petals, {
-            scale: 0,
-            autoAlpha: 0,
-            transformOrigin: "50% 100%",
-            duration: 0.9,
-            stagger: { each: 0.07, from: "end" },
-            ease: "back.out(1.6)",
-          })
-          .from("[data-intro-line]", { yPercent: 120, duration: 0.9 }, "-=0.5")
+        // the curtain is already painted by the server; petals and line start hidden in CSS
+        tl.fromTo(
+          petals,
+          { scale: 0, autoAlpha: 0, transformOrigin: "50% 100%" },
+          { scale: 1, autoAlpha: 1, duration: 0.9, stagger: { each: 0.07, from: "end" }, ease: "back.out(1.6)" },
+        )
+          .fromTo("[data-intro-line]", { yPercent: 120, autoAlpha: 1 }, { yPercent: 0, duration: 0.9 }, "-=0.5")
           .to("[data-intro-inner]", { y: -40, autoAlpha: 0, duration: 0.6, ease: "power2.in" }, "+=0.35")
           .to(ref.current, { clipPath: "inset(0% 0% 100% 0%)", duration: 1.1, ease: "expo.inOut" }, "-=0.15")
           .add(() => window.dispatchEvent(new Event("prima:intro")), "-=0.75");
@@ -52,7 +49,7 @@ export default function Intro({ line }: { line: string }) {
     <div
       ref={ref}
       aria-hidden="true"
-      className="grad-bg invisible fixed inset-0 z-[90] flex items-center justify-center"
+      className="intro-curtain grad-bg fixed inset-0 z-[90] flex items-center justify-center"
       style={{ clipPath: "inset(0% 0% 0% 0%)" }}
     >
       <div data-intro-inner className="flex flex-col items-center gap-7 text-white">
