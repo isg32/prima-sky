@@ -8,7 +8,7 @@ export const en = {
   meta: {
     title: "Prima · Prima Sky 3 BHK Homes & Shops at Bhadaj, S.P. Ring Road, Ahmedabad",
     description:
-      "Prima Sky by Shree Balaji Lotus Buildcon LLP — a refined retreat of just 62 three-bedroom homes and 15 shops in two 10 & 11 storey towers at Bhadaj, off S.P. Ring Road, Ahmedabad. No TDR, 3-side open views, beside Mahakali & Shiv Temple and Bhadaj Lake Garden.",
+      "Prima Sky & Prima Residency by Shree Balaji Lotus Buildcon LLP — a refined retreat of just 62 three-bedroom homes and 15 shops in two 10 & 11 storey towers at Bhadaj, off S.P. Ring Road, Ahmedabad. No TDR, 3-side open views, beside Mahakali & Shiv Temple and Bhadaj Lake Garden.",
     ogAlt: "Prima Sky towers at dusk, Bhadaj, Ahmedabad",
   },
 
@@ -37,6 +37,7 @@ export const en = {
   intro: "Quiet corner in a huge world",
 
   hero: {
+    projects: "Prima Sky · Prima Residency",
     eyebrow: "Bhadaj · S.P. Ring Road · Ahmedabad",
     light: "Quiet corner in a",
     bold: "Huge world",
@@ -286,8 +287,8 @@ export const en = {
 
   brochure: {
     eyebrow: "09 — Brochure",
-    t: "Take Prima Sky with you",
-    b: "The complete brochure — renders, all four unit plans, the ground-floor site plan, specifications and location map — as a PDF.",
+    t: "Prima Sky & Prima Residency brochure",
+    b: "One brochure for Prima Sky and Prima Residency. The complete brochure — renders, all four unit plans, the ground-floor site plan, specifications and location map — as a PDF.",
     size: "PDF · 5.3 MB",
   },
 

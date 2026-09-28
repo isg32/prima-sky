@@ -81,8 +81,11 @@ export default function Hero({ t }: { t: Dict }) {
           width={1664}
           height={646}
           priority
-          className="mb-7 h-12 w-auto self-start brightness-0 invert md:h-14"
+          className="mb-3 h-12 w-auto self-start brightness-0 invert md:h-14"
         />
+        <p data-hero-fade className="mb-7 self-start rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-white/85 uppercase">
+          {t.hero.projects}
+        </p>
         <p data-hero-fade className="eyebrow mb-6 !text-white/75">
           {t.hero.eyebrow}
         </p>

@@ -63,8 +63,7 @@ export default function Previous({ t }: { t: Dict }) {
                     </a>
                     <div className="flex flex-1 flex-col p-5">
                       <h2 className="text-[16px] font-semibold tracking-wide uppercase">{proj.name}</h2>
-                      <p className="mt-2 text-[13px] text-ink/70">{proj.type[lang]}</p>
-                      <p className="mt-1 mb-5 flex items-start gap-1.5 text-[12.5px] text-slate">
+                      <p className="mt-2 mb-5 flex items-start gap-1.5 text-[12.5px] text-slate">
                         <Icon name="pin" size={14} className="mt-0.5 shrink-0" />
                         {proj.location[lang]}
                       </p>
