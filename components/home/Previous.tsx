@@ -47,7 +47,7 @@ export default function Previous({ t }: { t: Dict }) {
               {p.note}
             </p>
 
-            <ul data-stagger className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <ul data-stagger className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {previousProjects.map((proj) => {
                 const lang = t.locale === "gu" ? "gu" : "en";
                 return (

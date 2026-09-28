@@ -17,6 +17,17 @@ const pdf = (file: string) => `/previous/${encodeURIComponent(file)}`;
 
 export const previousProjects: PreviousProject[] = [
   {
+    // Architect's drawing set (S Mevada Architects); the file name carries the client's
+    // name, so the card and download use a neutral project name instead.
+    name: "R17 Residence",
+    type: { en: "3 & 4 BHK residential apartments", gu: "3 અને 4 BHK રહેણાંક એપાર્ટમેન્ટ" },
+    location: { en: "Ognaj, Ahmedabad", gu: "ઓગણજ, અમદાવાદ" },
+    image: "/previous/img/r17-ognaj.jpg",
+    brochure: pdf("R17_PR_DIPAK BHAI OGNAJ_11-07-26.pdf"),
+    downloadAs: "R17-Residence-Plans.pdf",
+    sizeMB: 2,
+  },
+  {
     name: "Elite One13",
     type: { en: "3 BHK premium living", gu: "3 BHK પ્રીમિયમ રહેઠાણ" },
     location: { en: "Vande Mataram Road, Gota, Ahmedabad", gu: "વંદે માતરમ રોડ, ગોતા, અમદાવાદ" },
