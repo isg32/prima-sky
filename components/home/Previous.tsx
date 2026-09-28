@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import Header from "../Header";
-import Lotus from "../brand/Lotus";
 import PrimaMark from "../brand/PrimaMark";
 import SmoothScroll from "../motion/SmoothScroll";
 import { useReveal } from "../motion/useReveal";
@@ -48,42 +47,42 @@ export default function Previous({ t }: { t: Dict }) {
               {p.note}
             </p>
 
-            <ul data-stagger className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {previousProjects.map((proj, i) =>
-                proj.name ? (
-                  <li key={i} className="overflow-hidden border border-rule bg-white">
-                    <div className="relative aspect-[4/3] bg-paper-2">
-                      {proj.image ? (
-                        <Image src={proj.image} alt={proj.name} fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="object-cover" />
-                      ) : (
-                        <Lotus className="absolute top-1/2 left-1/2 w-20 -translate-x-1/2 -translate-y-1/2 opacity-30" />
-                      )}
-                    </div>
-                    <div className="p-5">
+            <ul data-stagger className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {previousProjects.map((proj) => {
+                const lang = t.locale === "gu" ? "gu" : "en";
+                return (
+                  <li key={proj.name} className="group flex flex-col overflow-hidden border border-rule bg-white">
+                    <a href={proj.brochure} target="_blank" rel="noopener" aria-label={`${p.view}: ${proj.name}`} className="relative block aspect-[4/3] overflow-hidden bg-paper-2">
+                      <Image
+                        src={proj.image}
+                        alt={proj.name}
+                        fill
+                        sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+                      />
+                    </a>
+                    <div className="flex flex-1 flex-col p-5">
                       <h2 className="text-[16px] font-semibold tracking-wide uppercase">{proj.name}</h2>
-                      <dl className="mono mt-3 grid gap-1 text-[12px] text-slate">
-                        {proj.type && (
-                          <div className="flex gap-2">
-                            <dt>{p.type}:</dt>
-                            <dd className="text-ink">{proj.type}</dd>
-                          </div>
-                        )}
-                        {proj.location && (
-                          <div className="flex gap-2">
-                            <dt>{p.location}:</dt>
-                            <dd className="text-ink">{proj.location}</dd>
-                          </div>
-                        )}
-                      </dl>
+                      <p className="mt-2 text-[13px] text-ink/70">{proj.type[lang]}</p>
+                      <p className="mt-1 mb-5 flex items-start gap-1.5 text-[12.5px] text-slate">
+                        <Icon name="pin" size={14} className="mt-0.5 shrink-0" />
+                        {proj.location[lang]}
+                      </p>
+                      <a
+                        href={proj.brochure}
+                        download={proj.downloadAs}
+                        className="mt-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-t border-rule pt-4 text-[13px] font-medium whitespace-nowrap text-blue-deep transition-colors hover:text-blue"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Icon name="download" size={15} />
+                          {p.download}
+                        </span>
+                        <span className="mono text-[10.5px] font-normal text-slate">{proj.sizeMB} MB</span>
+                      </a>
                     </div>
                   </li>
-                ) : (
-                  <li key={i} className="flex aspect-[4/3] flex-col items-center justify-center gap-3 border border-dashed border-ink/20 bg-white/40 p-5 text-center sm:aspect-auto sm:min-h-[260px]">
-                    <Lotus className="w-12 opacity-25" />
-                    <span className="mono text-[11px] tracking-widest text-ink/45 uppercase">{p.tbd}</span>
-                  </li>
-                ),
-              )}
+                );
+              })}
             </ul>
           </div>
         </section>
