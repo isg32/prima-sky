@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { useRef } from "react";
 import Icon from "../ui/Icon";
+import Lotus from "../brand/Lotus";
 import type { Dict } from "@/lib/i18n/en";
 import { renders } from "@/lib/project";
+import type { ProjectKey } from "@/lib/routes";
 import { gsap, MOTION_OK, SplitText, useGSAP } from "@/lib/gsap";
 
-export default function Hero({ t }: { t: Dict }) {
+export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -74,15 +76,25 @@ export default function Hero({ t }: { t: Dict }) {
       </div>
 
       <div data-hero-content className="wrap flex min-h-[100svh] flex-col justify-end pt-28 pb-7 md:pt-32 md:pb-14">
-        <Image
-          data-hero-fade
-          src="/brand/logo.png"
-          alt="Prima Sky — 3 BHK Homes & Shops"
-          width={1664}
-          height={646}
-          priority
-          className="mb-3 h-12 w-auto self-start brightness-0 invert md:h-14"
-        />
+        {project === "sky" ? (
+          <Image
+            data-hero-fade
+            src="/brand/logo.png"
+            alt={`${t.projectName} — ${t.brandSub}`}
+            width={1664}
+            height={646}
+            priority
+            className="mb-3 h-12 w-auto self-start brightness-0 invert md:h-14"
+          />
+        ) : (
+          // no artwork for Prima Residency yet: the lotus with its name set in the logo's style
+          <p data-hero-fade className="mb-3 flex items-center gap-3 self-start" role="img" aria-label={`${t.projectName} — ${t.brandSub}`}>
+            <Lotus tone="white" className="h-12 w-auto md:h-14" />
+            <span className="text-[clamp(22px,2.6vw,30px)] leading-none font-bold tracking-[0.14em] uppercase" style={{ fontFamily: "var(--font-montserrat)" }}>
+              Prima <span className="font-light">Residency</span>
+            </span>
+          </p>
+        )}
         <p data-hero-fade className="mb-7 self-start rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-white/85 uppercase">
           {t.hero.projects}
         </p>

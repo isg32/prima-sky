@@ -14,27 +14,30 @@ import Shops from "./sections/Shops";
 import Specs from "./sections/Specs";
 import type { Dict } from "@/lib/i18n/en";
 import { jsonLd } from "@/lib/meta";
-import { otherLocale, route } from "@/lib/routes";
+import { otherLocale, route, type ProjectKey } from "@/lib/routes";
 
-export default function Site({ t }: { t: Dict }) {
+export default function Site({ t, project }: { t: Dict; project: ProjectKey }) {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(t)).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(t, project)).replace(/</g, "\\u003c") }}
       />
       <SmoothScroll />
       <Intro line={t.intro} />
       <Header
         t={t}
         nav={t.nav.map((n) => ({ href: `#${n.id}`, label: n.label }))}
-        homeHref="#top"
-        switchHref={route(otherLocale(t.locale), "home")}
+        homeHref={route(t.locale, "home")}
+        switchHref={route(otherLocale(t.locale), project)}
         showPrice
-        menuExtra={[{ href: route(t.locale, "previous"), label: t.previousLink.cta }]}
+        menuExtra={[
+          { href: route(t.locale, "home"), label: t.backHome },
+          { href: route(t.locale, "previous"), label: t.previousLink.cta },
+        ]}
       />
       <main id="main">
-        <Hero t={t} />
+        <Hero t={t} project={project} />
         <Overview t={t} />
         <Gallery t={t} />
         <Corridor t={t} />

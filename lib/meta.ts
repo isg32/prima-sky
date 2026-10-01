@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { Dict } from "./i18n/en";
 import { SITE_URL, contact } from "./project";
-import { route, type Page } from "./routes";
+import { route, type Page, type ProjectKey } from "./routes";
 
 export const viewport: Viewport = {
   themeColor: "#0057A8",
@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export function buildMetadata(t: Dict, page: Page): Metadata {
-  const m = page === "previous" ? t.previous.meta : t.meta;
+  const m = page === "home" ? t.home.meta : page === "previous" ? t.previous.meta : t.meta;
   const path = route(t.locale, page);
   return {
     title: m.title,
@@ -41,13 +41,26 @@ export const baseMetadata: Metadata = {
   formatDetection: { telephone: false },
 };
 
-export function jsonLd(t: Dict) {
+export function organizationLd(t: Dict) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Prima",
+    legalName: "Shree Balaji Lotus Buildcon LLP",
+    url: `${SITE_URL}${route(t.locale, "home")}`,
+    email: contact.email,
+    telephone: contact.phoneIntl,
+    description: t.home.meta.description,
+  };
+}
+
+export function jsonLd(t: Dict, project: ProjectKey) {
   return {
     "@context": "https://schema.org",
     "@type": "ApartmentComplex",
-    name: "Prima Sky by Prima",
+    name: `${t.projectName} by Prima`,
     description: t.meta.description,
-    url: `${SITE_URL}${route(t.locale, "home")}`,
+    url: `${SITE_URL}${route(t.locale, project)}`,
     image: `${SITE_URL}/og.jpg`,
     numberOfAccommodationUnits: 62,
     telephone: contact.phoneIntl,

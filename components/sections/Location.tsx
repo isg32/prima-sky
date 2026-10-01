@@ -56,7 +56,7 @@ export default function Location({ t }: { t: Dict }) {
             {/* site marker over the brochure's red plot */}
             <span className="pulse absolute top-[39%] left-[15.5%] z-10 grid h-4 w-4 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-blue text-blue ring-4 ring-white" />
             <span className="absolute top-[31%] left-[17%] z-10 bg-blue-deep px-2.5 py-1 text-[10px] font-bold tracking-widest text-white uppercase shadow-lg">
-              Prima Sky
+              {t.projectName}
             </span>
           </figure>
 

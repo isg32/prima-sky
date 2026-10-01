@@ -5,6 +5,8 @@ import { route, type Page } from "@/lib/routes";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: [Page, number][] = [
     ["home", 1],
+    ["sky", 0.9],
+    ["residency", 0.9],
     ["previous", 0.5],
   ];
   return pages.flatMap(([page, priority]) => {

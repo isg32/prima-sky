@@ -28,7 +28,6 @@ export default function Previous({ t }: { t: Dict }) {
         homeHref={route(t.locale, "home")}
         switchHref={route(otherLocale(t.locale), "previous")}
         light
-        
       />
 
       <main id="main">

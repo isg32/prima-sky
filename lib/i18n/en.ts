@@ -22,6 +22,7 @@ export const en = {
     { id: "location", label: "Location" },
     { id: "contact", label: "Contact" },
   ],
+  projectName: "Prima Sky",
   brandSub: "3 BHK Homes & Shops",
   priceOnRequest: "Price on request",
   cta: {
@@ -332,6 +333,18 @@ export const en = {
   brand: "Prima",
   developerName: "Shree Balaji Lotus Buildcon LLP",
   backHome: "Home",
+
+  home: {
+    meta: {
+      title: "Prima · Prima Sky & Prima Residency — 3 BHK Homes & Shops at Bhadaj, Ahmedabad",
+      description:
+        "Prima by Shree Balaji Lotus Buildcon LLP — Prima Sky and Prima Residency, 3 BHK homes and shops at Bhadaj, off S.P. Ring Road, Ahmedabad. Choose a project to explore its homes, shops, floor plans and location.",
+    },
+    light: "Our current",
+    bold: "Projects",
+    lede: "Two addresses in one quiet corner of Bhadaj. Choose a project to explore its homes, shops, floor plans and location.",
+    explore: "Explore",
+  },
 
   previousLink: { cta: "Previous Associated Projects", note: "Our current partners were associated with these earlier projects." },
 

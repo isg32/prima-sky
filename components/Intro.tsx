@@ -4,6 +4,10 @@ import { useRef, useState } from "react";
 import Lotus from "./brand/Lotus";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
+// The curtain plays once per visit; moving between pages inside the site skips it.
+// Set when the intro finishes (not when it starts) so React's dev double-mount still plays it.
+let played = false;
+
 /** Opening curtain: the lotus blooms petal by petal, then the blue panel lifts off the hero. */
 export default function Intro({ line }: { line: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,11 +18,18 @@ export default function Intro({ line }: { line: string }) {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
+        if (played) {
+          setDone(true);
+          // the page's own entrance listens for this in its effects, which run after ours
+          const id = requestAnimationFrame(() => window.dispatchEvent(new Event("prima:intro")));
+          return () => cancelAnimationFrame(id);
+        }
         document.documentElement.dataset.intro = "running";
         window.__lenis?.stop();
         const petals = gsap.utils.toArray<SVGPathElement>("[data-petal]", ref.current);
         const tl = gsap.timeline({
           onComplete: () => {
+            played = true;
             delete document.documentElement.dataset.intro;
             window.__lenis?.start();
             setDone(true);

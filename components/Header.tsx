@@ -10,6 +10,11 @@ import { gsap } from "@/lib/gsap";
 
 export type NavItem = { href: string; label: string };
 
+/** In-page anchors stay plain links (Lenis scrolls to them); pages go through the router. */
+function NavLink({ href, ...rest }: React.ComponentProps<"a"> & { href: string }) {
+  return href.startsWith("/") ? <Link href={href} {...rest} /> : <a href={href} {...rest} />;
+}
+
 export default function Header({
   t,
   nav,
@@ -84,9 +89,9 @@ export default function Header({
           </Link>
           <nav aria-label="Sections" className={`ml-auto hidden gap-5 text-[12.5px] font-medium whitespace-nowrap xl:flex ${dark ? "text-white/85" : "text-ink/75"}`}>
             {nav.map((n) => (
-              <a key={n.href} href={n.href} className="relative py-1 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-500 hover:after:scale-x-100">
+              <NavLink key={n.href} href={n.href} className="relative py-1 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-500 hover:after:scale-x-100">
                 {n.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
           <div className={`ml-auto flex shrink-0 items-center gap-2 sm:gap-3 xl:ml-4 ${dark ? "text-white" : "text-ink"}`}>
@@ -129,7 +134,7 @@ export default function Header({
             <ol className="space-y-1">
               {[...nav, ...menuExtra].map((n, i) => (
                 <li key={n.href} className="overflow-hidden">
-                  <a
+                  <NavLink
                     data-m
                     href={n.href}
                     onClick={() => setMenu(false)}
@@ -137,7 +142,7 @@ export default function Header({
                   >
                     <span className="mono text-xs opacity-60">{String(i + 1).padStart(2, "0")}</span>
                     {n.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ol>

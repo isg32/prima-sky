@@ -68,7 +68,7 @@ export default function Overview({ t }: { t: Dict }) {
           </p>
         </div>
         <figure data-clip className="relative aspect-[1339/1110] self-center mix-blend-multiply">
-          <Image src={renders.sketch} alt="Prima Sky — architectural sketch" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-contain" />
+          <Image src={renders.sketch} alt={`${t.projectName} — architectural sketch`} fill sizes="(min-width:1024px) 45vw, 100vw" className="object-contain" />
         </figure>
       </div>
 
