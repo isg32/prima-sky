@@ -162,9 +162,13 @@ export default function Home({ t }: { t: Dict }) {
                           <p className="flex items-center gap-2 text-[13px] text-white/75">
                             <Icon name="pin" size={16} /> {t.hero.eyebrow}
                           </p>
-                          <span className="btn btn-white mt-2 self-start transition-transform duration-500 group-hover:translate-x-1">
-                            {h.explore} <span className="sr-only">{name}</span> <Icon name="arrow" />
-                          </span>
+                          {/* the entrance tween moves this wrapper: .btn's own transform transition would leave it stuck mid-way */}
+                          <div className="mt-2">
+                            <span className="btn btn-white">
+                              {h.explore} <span className="sr-only">{name}</span>
+                              <Icon name="arrow" className="transition-transform duration-500 group-hover:translate-x-1" />
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </Link>
