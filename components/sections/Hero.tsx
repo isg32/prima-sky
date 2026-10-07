@@ -109,11 +109,12 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
             {t.hero.bold}
           </span>
         </h1>
-        <div className="mt-6 flex flex-col gap-6 md:mt-7 md:flex-row md:items-end md:justify-between">
+        {/* side by side only when the three CTAs fit on one line next to the copy */}
+        <div className="mt-6 flex flex-col gap-6 md:mt-7 xl:flex-row xl:items-end xl:justify-between">
           <p data-hero-fade className="max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-relaxed text-white/80">
             {t.hero.sub}
           </p>
-          <div data-hero-fade className="grid grid-cols-2 gap-3 md:flex md:flex-wrap">
+          <div data-hero-fade className="grid grid-cols-2 gap-3 md:flex md:flex-nowrap xl:shrink-0">
             <a href="#contact" className="btn btn-white justify-center max-md:!px-4">
               {t.cta.enquire} <Icon name="arrow" />
             </a>
