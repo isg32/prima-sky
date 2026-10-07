@@ -10,7 +10,7 @@ import PrimaMark from "../brand/PrimaMark";
 import { useReveal } from "../motion/useReveal";
 import type { Dict } from "@/lib/i18n/en";
 import { mailLink, telLink, waLink } from "@/lib/links";
-import { brochureUrl, contact, renders } from "@/lib/project";
+import { brochureDownloadAs, brochureUrl, contact, renders } from "@/lib/project";
 import { route } from "@/lib/routes";
 
 type Status = "idle" | "sending" | "ok" | "error" | "notConfigured" | "invalid";
@@ -94,7 +94,7 @@ export default function Contact({ t }: { t: Dict }) {
               {t.brochure.b}
             </p>
           </div>
-          <a data-fade href={brochureUrl} download="Prima-Sky-Prima-Residency-Brochure.pdf" className="btn btn-primary flex-wrap justify-center gap-y-1 max-md:w-full max-md:whitespace-normal md:justify-self-start">
+          <a data-fade href={brochureUrl} download={brochureDownloadAs} className="btn btn-primary flex-wrap justify-center gap-y-1 max-md:w-full max-md:whitespace-normal md:justify-self-start">
             <Icon name="download" /> {t.cta.brochure}
             <span className="mono text-[10px] font-normal tracking-wider opacity-70">{t.brochure.size}</span>
           </a>

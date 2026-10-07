@@ -8,6 +8,7 @@ import Corridor from "./sections/Corridor";
 import Gallery from "./sections/Gallery";
 import Hero from "./sections/Hero";
 import Location from "./sections/Location";
+import Ognaj from "./sections/Ognaj";
 import Overview from "./sections/Overview";
 import Residences from "./sections/Residences";
 import Shops from "./sections/Shops";
@@ -27,7 +28,10 @@ export default function Site({ t, project }: { t: Dict; project: ProjectKey }) {
       <Intro line={t.intro} />
       <Header
         t={t}
-        nav={t.nav.map((n) => ({ href: `#${n.id}`, label: n.label }))}
+        nav={[
+          ...(project === "residency" ? [{ href: "#ognaj", label: t.ognaj.bold }] : []),
+          ...t.nav.map((n) => ({ href: `#${n.id}`, label: n.label })),
+        ]}
         homeHref={route(t.locale, "home")}
         switchHref={route(otherLocale(t.locale), project)}
         showPrice
@@ -38,6 +42,7 @@ export default function Site({ t, project }: { t: Dict; project: ProjectKey }) {
       />
       <main id="main">
         <Hero t={t} project={project} />
+        {project === "residency" && <Ognaj t={t} />}
         <Overview t={t} />
         <Gallery t={t} />
         <Corridor t={t} />

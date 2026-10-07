@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Icon from "../ui/Icon";
 import Lotus from "../brand/Lotus";
 import type { Dict } from "@/lib/i18n/en";
-import { renders } from "@/lib/project";
+import { brochureDownloadAs, brochureUrl, renders } from "@/lib/project";
 import type { ProjectKey } from "@/lib/routes";
 import { gsap, MOTION_OK, SplitText, useGSAP } from "@/lib/gsap";
 
@@ -101,7 +101,7 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
         <p data-hero-fade className="eyebrow mb-6 !text-white/75">
           {t.hero.eyebrow}
         </p>
-        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${t.hero.light} ${t.hero.bold}`}>
+        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] gu:!leading-[1.25] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${t.hero.light} ${t.hero.bold}`}>
           <span className="block" aria-hidden="true">
             {t.hero.light}
           </span>
@@ -117,7 +117,12 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
             <a href="#contact" className="btn btn-white justify-center max-md:!px-4">
               {t.cta.enquire} <Icon name="arrow" />
             </a>
-            <a href="#residences" className="btn btn-ghost justify-center max-md:!px-4">
+            <a href={brochureUrl} download={brochureDownloadAs} className="btn btn-ghost justify-center max-md:!px-4">
+              <Icon name="download" />
+              <span className="md:hidden">{t.cta.brochureShort}</span>
+              <span className="max-md:hidden">{t.cta.brochure}</span>
+            </a>
+            <a href="#residences" className="btn btn-ghost col-span-2 justify-center max-md:!px-4">
               {t.nav[2].label}
             </a>
           </div>

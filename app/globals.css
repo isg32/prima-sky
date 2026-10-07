@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* gu:… applies a utility only on the Gujarati pages */
+@custom-variant gu (&:where(html[lang^="gu"] *));
+
 /* --------------------------------------------------------------------------
    Prima Sky design tokens — sampled from the brochure.
    -------------------------------------------------------------------------- */
@@ -109,6 +112,11 @@ img {
     height: 2px;
     background: var(--grad);
     flex: none;
+  }
+  /* wide tracking pulls Gujarati letters and their vowel signs apart */
+  html[lang^="gu"] .eyebrow {
+    letter-spacing: 0.02em;
+    font-size: 12px;
   }
   .on-dark .eyebrow {
     color: color-mix(in oklab, white 70%, transparent);
@@ -295,6 +303,12 @@ img {
 .split-line {
   padding-bottom: 0.06em;
   margin-bottom: -0.06em;
+}
+/* Gujarati vowel signs (િ ે ો ં ુ ૂ) reach well above and below the letters; the mask
+   has to make room for them or they are cut off, during the reveal and after it */
+html[lang^="gu"] .split-line {
+  padding-block: 0.28em;
+  margin-block: -0.28em;
 }
 
 @keyframes pulse-ring {

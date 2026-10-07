@@ -31,6 +31,7 @@ export const en = {
     email: "Email",
     enquire: "Enquire now",
     brochure: "Download brochure",
+    brochureShort: "Brochure",
   },
   whatsappMessage: "Hi, I'm interested in Prima Sky (3 BHK homes & shops) at Bhadaj, Ahmedabad. Please share details.",
   skip: "Skip to content",
@@ -334,6 +335,28 @@ export const en = {
   developerName: "Shree Balaji Lotus Buildcon LLP",
   backHome: "Home",
 
+  ognaj: {
+    eyebrow: "Prima Residency · Ognaj",
+    light: "Homes at",
+    bold: "Ognaj",
+    lede: "Prima Residency also brings a boutique residential building at Ognaj, Ahmedabad — spacious 3 & 4 BHK apartments with just two homes on each floor, set on an 18 m road.",
+    facts: [
+      { k: "Configuration", v: "3 & 4 BHK" },
+      { k: "Homes per floor", v: "2" },
+      { k: "Lifts", v: "2" },
+      { k: "Road", v: "18 m" },
+      { k: "Living & dining", v: `14'0" × 36'6"` },
+      { k: "Master bedroom", v: `13'9" × 19'2"` },
+    ],
+    alts: ["Corner view of the Ognaj building", "Front elevation", "Street view with landscaping", "Aerial view among the trees"],
+    plans: "Download floor plans",
+    maps: "Open in Google Maps",
+    enquire: "Enquire about Ognaj",
+    interest: "Prima Residency — Ognaj",
+    place: "Ognaj, Ahmedabad",
+    note: "Plans are the architect's drawings; renders are artistic impressions.",
+  },
+
   home: {
     meta: {
       title: "Prima · Prima Sky & Prima Residency — 3 BHK Homes & Shops at Bhadaj, Ahmedabad",
@@ -342,7 +365,8 @@ export const en = {
     },
     light: "Our current",
     bold: "Projects",
-    lede: "Two addresses in one quiet corner of Bhadaj. Choose a project to explore its homes, shops, floor plans and location.",
+    lede: "Thoughtfully planned homes and shops in Ahmedabad. Choose a project to explore its homes, floor plans and location.",
+    residencyPlace: "Bhadaj · Ognaj · Ahmedabad",
     explore: "Explore",
   },
 

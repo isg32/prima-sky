@@ -116,9 +116,9 @@ export default function Home({ t }: { t: Dict }) {
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.75fr)] lg:items-end">
               <div>
                 <p data-home-fade className="eyebrow mb-6 !text-white/75">
-                  {t.hero.eyebrow}
+                  {t.developerName}
                 </p>
-                <h1 data-home-title className="display !text-[clamp(38px,5.4vw,80px)] !leading-[0.95]" aria-label={`${h.light} ${h.bold}`}>
+                <h1 data-home-title className="display !text-[clamp(38px,5.4vw,80px)] !leading-[0.95] gu:!leading-[1.25]" aria-label={`${h.light} ${h.bold}`}>
                   <span className="block" aria-hidden="true">
                     {h.light}
                   </span>
@@ -156,11 +156,11 @@ export default function Home({ t }: { t: Dict }) {
 
                         <div data-card-body className="relative flex flex-col gap-3 p-6 md:p-8">
                           <span className="mono text-[10.5px] tracking-[0.2em] text-sky-soft uppercase">{t.brandSub}</span>
-                          <h2 className="text-[clamp(32px,3.6vw,52px)] leading-[0.95] tracking-wide uppercase">
+                          <h2 className="text-[clamp(32px,3.6vw,52px)] leading-[0.95] tracking-wide uppercase gu:leading-[1.25] gu:tracking-normal">
                             <span className="font-light">{first}</span> <span className="font-bold">{rest.join(" ")}</span>
                           </h2>
                           <p className="flex items-center gap-2 text-[13px] text-white/75">
-                            <Icon name="pin" size={16} /> {t.hero.eyebrow}
+                            <Icon name="pin" size={16} /> {c.key === "residency" ? h.residencyPlace : t.hero.eyebrow}
                           </p>
                           {/* the entrance tween moves this wrapper: .btn's own transform transition would leave it stuck mid-way */}
                           <div className="mt-2">

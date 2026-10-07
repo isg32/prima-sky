@@ -30,6 +30,21 @@ export const contact = {
 };
 
 export const brochureUrl = "/prima-sky-brochure.pdf";
+export const brochureDownloadAs = "Prima-Sky-Prima-Residency-Brochure.pdf";
+
+// Prima Residency's Ognaj building — renders and the architect's plan set.
+export const ognaj = {
+  images: [
+    "/prima-residency/ognaj-corner.jpg",
+    "/prima-residency/ognaj-front.jpg",
+    "/prima-residency/ognaj-street.jpg",
+    "/prima-residency/ognaj-aerial.jpg",
+  ],
+  plans: "/prima-residency/ognaj-plans.pdf",
+  plansDownloadAs: "Prima-Residency-Ognaj-Plans.pdf",
+  plansSize: "PDF · 2 MB",
+  mapsUrl: "https://www.google.com/maps?q=23.106139,72.519194",
+};
 
 // ---------------------------------------------------------------------------
 // Unit plans — geometry traced from the brochure plans (brochure px space).
