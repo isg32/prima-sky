@@ -3,25 +3,23 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import Heading from "../ui/Heading";
-import Icon from "../ui/Icon";
 import Lightbox from "../ui/Lightbox";
 import { useReveal } from "../motion/useReveal";
 import type { Dict } from "@/lib/i18n/en";
-import { enquire } from "@/lib/links";
-import { ognaj } from "@/lib/project";
+import { residency } from "@/lib/project";
 
-/** Prima Residency's Ognaj building: renders, key facts from the architect's plans, and the plan set. */
-export default function Ognaj({ t }: { t: Dict }) {
+/** Prima Residency at a glance: key facts from the architect's plans beside the renders. */
+export default function Overview({ t }: { t: Dict }) {
   const ref = useRef<HTMLElement>(null);
   const [open, setOpen] = useState<number | null>(null);
-  const o = t.ognaj;
+  const o = t.residency.overview;
   useReveal(ref);
 
-  const items = ognaj.images.map((src, i) => ({ src, alt: o.alts[i], title: `${o.bold} — ${o.alts[i]}` }));
+  const items = residency.images.map((src, i) => ({ src, alt: o.alts[i], title: o.alts[i] }));
   const [main, ...thumbs] = items;
 
   return (
-    <section ref={ref} id="ognaj" className="section paper">
+    <section ref={ref} id="overview" className="section paper">
       <div className="wrap grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-16">
         <div>
           <Heading eyebrow={o.eyebrow} light={o.light} bold={o.bold} size="display-md" tab />
@@ -37,20 +35,6 @@ export default function Ognaj({ t }: { t: Dict }) {
               </div>
             ))}
           </dl>
-
-          <div data-stagger className="mt-9 grid gap-3 sm:flex sm:flex-wrap">
-            <a href={ognaj.plans} download={ognaj.plansDownloadAs} className="btn btn-primary flex-wrap justify-center gap-y-1 max-sm:whitespace-normal">
-              <Icon name="download" /> {o.plans}
-              <span className="mono text-[10px] font-normal tracking-wider opacity-70">{ognaj.plansSize}</span>
-            </a>
-            <a href="#contact" onClick={() => enquire(o.interest)} className="btn btn-ghost justify-center">
-              {o.enquire} <Icon name="arrow" />
-            </a>
-          </div>
-          <a data-fade href={ognaj.mapsUrl} target="_blank" rel="noopener" className="mt-5 inline-flex items-center gap-2 text-[13px] text-slate underline decoration-ink/20 underline-offset-4 transition-colors hover:text-blue hover:decoration-blue">
-            <Icon name="pin" size={16} /> {o.place} — {o.maps}
-            <Icon name="arrowUpRight" size={12} />
-          </a>
         </div>
 
         <div>

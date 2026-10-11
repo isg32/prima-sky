@@ -12,13 +12,13 @@ import type { Dict } from "@/lib/i18n/en";
 import { projectName } from "@/lib/i18n/project";
 import { mailLink, telLink } from "@/lib/links";
 import { organizationLd } from "@/lib/meta";
-import { contact, renders } from "@/lib/project";
+import { contact, renders, residency } from "@/lib/project";
 import { otherLocale, route, type ProjectKey } from "@/lib/routes";
 import { gsap, MOTION_OK, SplitText, useGSAP } from "@/lib/gsap";
 
 const CARDS: { key: ProjectKey; image: string; position: string }[] = [
   { key: "sky", image: renders.dusk, position: "object-[60%_40%]" },
-  { key: "residency", image: renders.frontDay, position: "object-center" },
+  { key: "residency", image: residency.hero, position: "object-[55%_30%]" },
 ];
 
 /** Front page: the same opening as a project page, then a choice between the two projects. */
@@ -155,7 +155,7 @@ export default function Home({ t }: { t: Dict }) {
                         </span>
 
                         <div data-card-body className="relative flex flex-col gap-3 p-6 md:p-8">
-                          <span className="mono text-[10.5px] tracking-[0.2em] text-sky-soft uppercase">{t.brandSub}</span>
+                          <span className="mono text-[10.5px] tracking-[0.2em] text-sky-soft uppercase">{c.key === "residency" ? h.residencyTag : t.brandSub}</span>
                           <h2 className="text-[clamp(32px,3.6vw,52px)] leading-[0.95] tracking-wide uppercase gu:leading-[1.25] gu:tracking-normal">
                             <span className="font-light">{first}</span> <span className="font-bold">{rest.join(" ")}</span>
                           </h2>

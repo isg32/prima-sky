@@ -8,32 +8,29 @@ import Corridor from "./sections/Corridor";
 import Gallery from "./sections/Gallery";
 import Hero from "./sections/Hero";
 import Location from "./sections/Location";
-import Ognaj from "./sections/Ognaj";
 import Overview from "./sections/Overview";
 import Residences from "./sections/Residences";
 import Shops from "./sections/Shops";
 import Specs from "./sections/Specs";
 import type { Dict } from "@/lib/i18n/en";
 import { jsonLd } from "@/lib/meta";
-import { otherLocale, route, type ProjectKey } from "@/lib/routes";
+import { otherLocale, route } from "@/lib/routes";
 
-export default function Site({ t, project }: { t: Dict; project: ProjectKey }) {
+/** The Prima Sky page. */
+export default function Site({ t }: { t: Dict }) {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(t, project)).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(t)).replace(/</g, "\\u003c") }}
       />
       <SmoothScroll />
       <Intro line={t.intro} />
       <Header
         t={t}
-        nav={[
-          ...(project === "residency" ? [{ href: "#ognaj", label: t.ognaj.bold }] : []),
-          ...t.nav.map((n) => ({ href: `#${n.id}`, label: n.label })),
-        ]}
+        nav={t.nav.map((n) => ({ href: `#${n.id}`, label: n.label }))}
         homeHref={route(t.locale, "home")}
-        switchHref={route(otherLocale(t.locale), project)}
+        switchHref={route(otherLocale(t.locale), "sky")}
         showPrice
         menuExtra={[
           { href: route(t.locale, "home"), label: t.backHome },
@@ -41,8 +38,7 @@ export default function Site({ t, project }: { t: Dict; project: ProjectKey }) {
         ]}
       />
       <main id="main">
-        <Hero t={t} project={project} />
-        {project === "residency" && <Ognaj t={t} />}
+        <Hero t={t} project="sky" />
         <Overview t={t} />
         <Gallery t={t} />
         <Corridor t={t} />

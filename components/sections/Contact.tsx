@@ -10,14 +10,20 @@ import PrimaMark from "../brand/PrimaMark";
 import { useReveal } from "../motion/useReveal";
 import type { Dict } from "@/lib/i18n/en";
 import { mailLink, telLink, waLink } from "@/lib/links";
-import { brochureDownloadAs, brochureUrl, contact, renders } from "@/lib/project";
-import { route } from "@/lib/routes";
+import { brochureDownloadAs, brochureUrl, contact, renders, residency } from "@/lib/project";
+import { route, type ProjectKey } from "@/lib/routes";
 
 type Status = "idle" | "sending" | "ok" | "error" | "notConfigured" | "invalid";
 
-export default function Contact({ t }: { t: Dict }) {
+export default function Contact({ t, project = "sky" }: { t: Dict; project?: ProjectKey }) {
   const ref = useRef<HTMLElement>(null);
-  const baseOptions = t.contact.form.options;
+  const sky = project === "sky";
+  const r = t.residency.contact;
+  const baseOptions = sky ? t.contact.form.options : r.options;
+  const brochure = sky
+    ? { ...t.brochure, href: brochureUrl, as: brochureDownloadAs, light: "Prima", bold: "Sky" }
+    : { ...r.brochure, href: residency.plans, as: residency.plansDownloadAs, light: "Prima", bold: "Residency" };
+  const waText = sky ? undefined : t.residency.whatsappMessage;
   const [interest, setInterest] = useState(baseOptions[0]);
   const [status, setStatus] = useState<Status>("idle");
   useReveal(ref);
@@ -78,25 +84,25 @@ export default function Contact({ t }: { t: Dict }) {
           <div data-fade className="relative aspect-[666/986] w-36 rotate-[-4deg] shadow-[0_30px_60px_-20px_rgba(11,27,46,0.4)] max-md:mx-auto md:w-48">
             <div className="paper absolute inset-0 flex flex-col items-center justify-center gap-3 p-4">
               <Lotus className="w-16" />
-              <span className="text-center text-[15px] leading-none font-bold tracking-wide text-blue">
-                PRIMA <span className="text-charcoal">SKY</span>
+              <span className="text-center text-[15px] leading-none font-bold tracking-wide text-blue uppercase">
+                {brochure.light} <span className="text-charcoal">{brochure.bold}</span>
               </span>
             </div>
           </div>
           <div>
             <p data-fade className="eyebrow mb-4">
-              {t.brochure.eyebrow}
+              {brochure.eyebrow}
             </p>
             <h2 data-split className="display display-sm !font-bold">
-              {t.brochure.t}
+              {brochure.t}
             </h2>
             <p data-fade className="lede mt-4">
-              {t.brochure.b}
+              {brochure.b}
             </p>
           </div>
-          <a data-fade href={brochureUrl} download={brochureDownloadAs} className="btn btn-primary flex-wrap justify-center gap-y-1 max-md:w-full max-md:whitespace-normal md:justify-self-start">
+          <a data-fade href={brochure.href} download={brochure.as} className="btn btn-primary flex-wrap justify-center gap-y-1 max-md:w-full max-md:whitespace-normal md:justify-self-start">
             <Icon name="download" /> {t.cta.brochure}
-            <span className="mono text-[10px] font-normal tracking-wider opacity-70">{t.brochure.size}</span>
+            <span className="mono text-[10px] font-normal tracking-wider opacity-70">{brochure.size}</span>
           </a>
         </div>
       </section>
@@ -109,7 +115,7 @@ export default function Contact({ t }: { t: Dict }) {
 
         <div className="wrap section grid grid-cols-[minmax(0,1fr)] gap-16 lg:grid-cols-2">
           <div>
-            <Heading eyebrow={c.eyebrow} light={c.light} bold={c.bold} size="display-md" />
+            <Heading eyebrow={sky ? c.eyebrow : r.eyebrow} light={c.light} bold={c.bold} size="display-md" />
             <p data-fade className="lede mt-8">
               {c.body}
             </p>
@@ -118,7 +124,7 @@ export default function Contact({ t }: { t: Dict }) {
               {c.reach}
             </p>
             <div data-stagger className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-              <a href={waLink(t)} target="_blank" rel="noopener" className="btn btn-wa col-span-2 justify-center">
+              <a href={waLink(t, waText)} target="_blank" rel="noopener" className="btn btn-wa col-span-2 justify-center">
                 <Icon name="whatsapp" /> {t.cta.whatsapp}
               </a>
               <a href={telLink} className="btn btn-white justify-center max-sm:!px-3">
@@ -139,7 +145,7 @@ export default function Contact({ t }: { t: Dict }) {
               <div>
                 <dt className="mono mb-2 text-[10.5px] tracking-[0.16em] text-sky-soft uppercase">{c.address}</dt>
                 <dd className="leading-relaxed text-white/85">
-                  {c.addressLines.map((line) => (
+                  {(sky ? c.addressLines : r.addressLines).map((line) => (
                     <span key={line} className="block">
                       {line}
                     </span>

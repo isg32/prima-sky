@@ -30,20 +30,29 @@ export const contact = {
 };
 
 export const brochureUrl = "/prima-sky-brochure.pdf";
-export const brochureDownloadAs = "Prima-Sky-Prima-Residency-Brochure.pdf";
+export const brochureDownloadAs = "Prima-Sky-Brochure.pdf";
 
-// Prima Residency's Ognaj building — renders and the architect's plan set.
-export const ognaj = {
+// Prima Residency (Ognaj) — renders, the architect's plan set and its sheets.
+export const residency = {
+  hero: "/prima-residency/ognaj-corner.jpg",
   images: [
     "/prima-residency/ognaj-corner.jpg",
     "/prima-residency/ognaj-front.jpg",
     "/prima-residency/ognaj-street.jpg",
     "/prima-residency/ognaj-aerial.jpg",
   ],
+  // in the order of t.residency.plans.sheets; client's name covered in the title block
+  sheets: [
+    "/prima-residency/plans/typical-floor.jpg",
+    "/prima-residency/plans/duplex-lower.jpg",
+    "/prima-residency/plans/duplex-upper.jpg",
+    "/prima-residency/plans/hollow-plinth.jpg",
+  ],
   plans: "/prima-residency/ognaj-plans.pdf",
-  plansDownloadAs: "Prima-Residency-Ognaj-Plans.pdf",
-  plansSize: "PDF · 2 MB",
+  plansDownloadAs: "Prima-Residency-Floor-Plans.pdf",
+  geo: { lat: 23.106139, lng: 72.519194 },
   mapsUrl: "https://www.google.com/maps?q=23.106139,72.519194",
+  embedUrl: "https://maps.google.com/maps?q=23.106139,72.519194&z=16&output=embed",
 };
 
 // ---------------------------------------------------------------------------

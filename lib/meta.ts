@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { Dict } from "./i18n/en";
-import { SITE_URL, contact } from "./project";
-import { route, type Page, type ProjectKey } from "./routes";
+import { SITE_URL, contact, residency } from "./project";
+import { route, type Page } from "./routes";
 
 export const viewport: Viewport = {
   themeColor: "#0057A8",
@@ -11,8 +11,9 @@ export const viewport: Viewport = {
 };
 
 export function buildMetadata(t: Dict, page: Page): Metadata {
-  const m = page === "home" ? t.home.meta : page === "previous" ? t.previous.meta : t.meta;
+  const m = page === "home" ? t.home.meta : page === "previous" ? t.previous.meta : page === "residency" ? t.residency.meta : t.meta;
   const path = route(t.locale, page);
+  const og = page === "residency" ? { url: "/prima-residency/og.jpg", alt: t.residency.meta.ogAlt } : { url: "/og.jpg", alt: t.meta.ogAlt };
   return {
     title: m.title,
     description: m.description,
@@ -27,9 +28,9 @@ export function buildMetadata(t: Dict, page: Page): Metadata {
       locale: t.locale === "gu" ? "gu_IN" : "en_IN",
       title: m.title,
       description: m.description,
-      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: t.meta.ogAlt }],
+      images: [{ url: og.url, width: 1200, height: 630, alt: og.alt }],
     },
-    twitter: { card: "summary_large_image", title: m.title, description: m.description, images: ["/og.jpg"] },
+    twitter: { card: "summary_large_image", title: m.title, description: m.description, images: [og.url] },
   };
 }
 
@@ -54,13 +55,31 @@ export function organizationLd(t: Dict) {
   };
 }
 
-export function jsonLd(t: Dict, project: ProjectKey) {
+export function residencyLd(t: Dict) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ApartmentComplex",
+    name: "Prima Residency by Prima",
+    description: t.residency.meta.description,
+    url: `${SITE_URL}${route(t.locale, "residency")}`,
+    image: `${SITE_URL}/prima-residency/og.jpg`,
+    numberOfAccommodationUnits: 12,
+    telephone: contact.phoneIntl,
+    email: contact.email,
+    hasMap: residency.mapsUrl,
+    geo: { "@type": "GeoCoordinates", latitude: residency.geo.lat, longitude: residency.geo.lng },
+    address: { "@type": "PostalAddress", addressLocality: "Ognaj, Ahmedabad", addressRegion: "Gujarat", addressCountry: "IN" },
+    brand: { "@type": "Organization", name: "Shree Balaji Lotus Buildcon LLP", email: contact.email },
+  };
+}
+
+export function jsonLd(t: Dict) {
   return {
     "@context": "https://schema.org",
     "@type": "ApartmentComplex",
     name: `${t.projectName} by Prima`,
     description: t.meta.description,
-    url: `${SITE_URL}${route(t.locale, project)}`,
+    url: `${SITE_URL}${route(t.locale, "sky")}`,
     image: `${SITE_URL}/og.jpg`,
     numberOfAccommodationUnits: 62,
     telephone: contact.phoneIntl,

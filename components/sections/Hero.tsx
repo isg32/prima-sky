@@ -5,12 +5,17 @@ import { useRef } from "react";
 import Icon from "../ui/Icon";
 import Lotus from "../brand/Lotus";
 import type { Dict } from "@/lib/i18n/en";
-import { brochureDownloadAs, brochureUrl, renders } from "@/lib/project";
+import { projectName } from "@/lib/i18n/project";
+import { brochureDownloadAs, brochureUrl, renders, residency } from "@/lib/project";
 import type { ProjectKey } from "@/lib/routes";
 import { gsap, MOTION_OK, SplitText, useGSAP } from "@/lib/gsap";
 
 export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
   const ref = useRef<HTMLElement>(null);
+  const sky = project === "sky";
+  const h = sky ? t.hero : t.residency.hero;
+  const name = `${projectName(t, project)} — ${sky ? t.brandSub : "3 & 4 BHK"}`;
+  const brochure = sky ? { href: brochureUrl, as: brochureDownloadAs } : { href: residency.plans, as: residency.plansDownloadAs };
 
   useGSAP(
     () => {
@@ -62,63 +67,62 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
       <div className="absolute inset-0 -z-10">
         <div data-hero-img className="absolute inset-0 will-change-transform">
           <Image
-            src={renders.dusk}
-            alt={t.meta.ogAlt}
+            src={sky ? renders.dusk : residency.hero}
+            alt={sky ? t.meta.ogAlt : t.residency.meta.ogAlt}
             fill
             priority
             sizes="100vw"
             quality={85}
-            className="object-cover object-[60%_40%]"
+            className={`object-cover ${sky ? "object-[60%_40%]" : "object-[55%_30%]"}`}
           />
         </div>
+        {/* the Residency render is a bright daytime sky: deepen it so the white type holds */}
+        {!sky && <div className="absolute inset-0 bg-night/45" />}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,27,46,0.55)_0%,rgba(11,27,46,0.1)_35%,rgba(11,27,46,0.55)_65%,rgba(11,27,46,0.95)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_0%_100%,rgba(0,87,168,0.45),transparent_60%)]" />
       </div>
 
       <div data-hero-content className="wrap flex min-h-[100svh] flex-col justify-end pt-28 pb-7 md:pt-32 md:pb-14">
-        {project === "sky" ? (
+        {sky ? (
           <Image
             data-hero-fade
             src="/brand/logo.png"
-            alt={`${t.projectName} — ${t.brandSub}`}
+            alt={name}
             width={1664}
             height={646}
             priority
-            className="mb-3 h-12 w-auto self-start brightness-0 invert md:h-14"
+            className="mb-7 h-12 w-auto self-start brightness-0 invert md:h-14"
           />
         ) : (
           // no artwork for Prima Residency yet: the lotus with its name set in the logo's style
-          <p data-hero-fade className="mb-3 flex items-center gap-3 self-start" role="img" aria-label={`${t.projectName} — ${t.brandSub}`}>
+          <p data-hero-fade className="mb-7 flex items-center gap-3 self-start" role="img" aria-label={name}>
             <Lotus tone="white" className="h-12 w-auto md:h-14" />
             <span className="text-[clamp(22px,2.6vw,30px)] leading-none font-bold tracking-[0.14em] uppercase" style={{ fontFamily: "var(--font-montserrat)" }}>
               Prima <span className="font-light">Residency</span>
             </span>
           </p>
         )}
-        <p data-hero-fade className="mb-7 self-start rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-white/85 uppercase">
-          {t.hero.projects}
-        </p>
         <p data-hero-fade className="eyebrow mb-6 !text-white/75">
-          {t.hero.eyebrow}
+          {h.eyebrow}
         </p>
-        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] gu:!leading-[1.25] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${t.hero.light} ${t.hero.bold}`}>
+        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] gu:!leading-[1.25] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${h.light} ${h.bold}`}>
           <span className="block" aria-hidden="true">
-            {t.hero.light}
+            {h.light}
           </span>
           <span className="block font-bold" aria-hidden="true">
-            {t.hero.bold}
+            {h.bold}
           </span>
         </h1>
         {/* side by side only when the three CTAs fit on one line next to the copy */}
         <div className="mt-6 flex flex-col gap-6 md:mt-7 xl:flex-row xl:items-end xl:justify-between">
           <p data-hero-fade className="max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-relaxed text-white/80">
-            {t.hero.sub}
+            {h.sub}
           </p>
           <div data-hero-fade className="grid grid-cols-2 gap-3 md:flex md:flex-nowrap xl:shrink-0">
             <a href="#contact" className="btn btn-white justify-center max-md:!px-4">
               {t.cta.enquire} <Icon name="arrow" />
             </a>
-            <a href={brochureUrl} download={brochureDownloadAs} className="btn btn-ghost justify-center max-md:!px-4">
+            <a href={brochure.href} download={brochure.as} className="btn btn-ghost justify-center max-md:!px-4">
               <Icon name="download" />
               <span className="md:hidden">{t.cta.brochureShort}</span>
               <span className="max-md:hidden">{t.cta.brochure}</span>
@@ -132,7 +136,7 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
         {/* signature: the dimension strip */}
         <dl className="relative mt-8 grid grid-cols-3 md:mt-14 md:grid-cols-6">
           <span data-dims-line className="absolute inset-x-0 top-0 h-px bg-white/35" />
-          {t.hero.facts.map((f, i) => {
+          {h.facts.map((f, i) => {
             const n = Number(f.v);
             return (
               <div

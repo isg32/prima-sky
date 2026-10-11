@@ -1,12 +1,9 @@
-import Site from "@/components/Site";
+import Residency from "@/components/Residency";
 import { buildMetadata } from "@/lib/meta";
 import { gu } from "@/lib/i18n/gu";
-import { forProject } from "@/lib/i18n/project";
 
-const t = forProject(gu, "residency");
-
-export const metadata = buildMetadata(t, "residency");
+export const metadata = buildMetadata(gu, "residency");
 
 export default function Page() {
-  return <Site t={t} project="residency" />;
+  return <Residency t={gu} />;
 }

@@ -8,7 +8,7 @@ export const en = {
   meta: {
     title: "Prima · Prima Sky 3 BHK Homes & Shops at Bhadaj, S.P. Ring Road, Ahmedabad",
     description:
-      "Prima Sky & Prima Residency by Shree Balaji Lotus Buildcon LLP — a refined retreat of just 62 three-bedroom homes and 15 shops in two 10 & 11 storey towers at Bhadaj, off S.P. Ring Road, Ahmedabad. No TDR, 3-side open views, beside Mahakali & Shiv Temple and Bhadaj Lake Garden.",
+      "Prima Sky by Shree Balaji Lotus Buildcon LLP — a refined retreat of just 62 three-bedroom homes and 15 shops in two 10 & 11 storey towers at Bhadaj, off S.P. Ring Road, Ahmedabad. No TDR, 3-side open views, beside Mahakali & Shiv Temple and Bhadaj Lake Garden.",
     ogAlt: "Prima Sky towers at dusk, Bhadaj, Ahmedabad",
   },
 
@@ -39,7 +39,6 @@ export const en = {
   intro: "Quiet corner in a huge world",
 
   hero: {
-    projects: "Prima Sky · Prima Residency",
     eyebrow: "Bhadaj · S.P. Ring Road · Ahmedabad",
     light: "Quiet corner in a",
     bold: "Huge world",
@@ -289,8 +288,8 @@ export const en = {
 
   brochure: {
     eyebrow: "09 — Brochure",
-    t: "Prima Sky & Prima Residency brochure",
-    b: "One brochure for Prima Sky and Prima Residency. The complete brochure — renders, all four unit plans, the ground-floor site plan, specifications and location map — as a PDF.",
+    t: "Prima Sky brochure",
+    b: "The complete brochure — renders, all four unit plans, the ground-floor site plan, specifications and location map — as a PDF.",
     size: "PDF · 5.3 MB",
   },
 
@@ -335,38 +334,141 @@ export const en = {
   developerName: "Shree Balaji Lotus Buildcon LLP",
   backHome: "Home",
 
-  ognaj: {
-    eyebrow: "Prima Residency · Ognaj",
-    light: "Homes at",
-    bold: "Ognaj",
-    lede: "Prima Residency also brings a boutique residential building at Ognaj, Ahmedabad — spacious 3 & 4 BHK apartments with just two homes on each floor, set on an 18 m road.",
-    facts: [
-      { k: "Configuration", v: "3 & 4 BHK" },
-      { k: "Homes per floor", v: "2" },
-      { k: "Lifts", v: "2" },
-      { k: "Road", v: "18 m" },
-      { k: "Living & dining", v: `14'0" × 36'6"` },
-      { k: "Master bedroom", v: `13'9" × 19'2"` },
-    ],
-    alts: ["Corner view of the Ognaj building", "Front elevation", "Street view with landscaping", "Aerial view among the trees"],
-    plans: "Download floor plans",
-    maps: "Open in Google Maps",
-    enquire: "Enquire about Ognaj",
-    interest: "Prima Residency — Ognaj",
-    place: "Ognaj, Ahmedabad",
-    note: "Plans are the architect's drawings; renders are artistic impressions.",
+  residency: {
+    meta: {
+      title: "Prima Residency · 3 & 4 BHK Homes at Ognaj, Ahmedabad",
+      description:
+        "Prima Residency by Shree Balaji Lotus Buildcon LLP — just 12 homes at Ognaj, Ahmedabad: two 3 BHK homes on each of floors 1–5 and two 4 BHK duplexes with private terraces above, with hollow-plinth parking on an 18 m road.",
+      ogAlt: "Prima Residency at Ognaj, Ahmedabad",
+    },
+    whatsappMessage: "Hi, I'm interested in Prima Residency (3 & 4 BHK homes) at Ognaj, Ahmedabad. Please share details.",
+    hero: {
+      eyebrow: "Ognaj · Ahmedabad",
+      light: "Two homes",
+      bold: "Per floor",
+      sub: "Spacious 3 BHK homes and 4 BHK duplexes with private terraces — only 12 families, two lifts and hollow-plinth parking on an 18 m road.",
+      facts: [
+        { k: "Homes", v: "12", em: "in all" },
+        { k: "3 BHK", v: "10", em: "homes" },
+        { k: "4 BHK", v: "2", em: "duplexes" },
+        { k: "Per floor", v: "2", em: "homes" },
+        { k: "Floors", v: "7", em: "+ plinth" },
+        { k: "Parking", v: "16", em: "cars" },
+      ],
+      scroll: "Scroll",
+    },
+    overview: {
+      eyebrow: "01 — Overview",
+      light: "Homes at",
+      bold: "Ognaj",
+      lede: "A boutique residential building at Ognaj, Ahmedabad. Floors one to five each hold just two 3 BHK homes; the sixth and seventh floors are two 4 BHK duplexes with an internal staircase and a private terrace of 28′ × 29′6″.",
+      facts: [
+        { k: "Homes", v: "12" },
+        { k: "Configuration", v: "3 & 4 BHK" },
+        { k: "Homes per floor", v: "2" },
+        { k: "Lifts", v: "2" },
+        { k: "Parking", v: "16 cars" },
+        { k: "Road", v: "18 m" },
+      ],
+      alts: ["Corner view of Prima Residency", "Front elevation", "Street view with landscaping", "Aerial view among the trees"],
+      note: "Renders are artistic impressions.",
+    },
+    plans: {
+      eyebrow: "02 — Floor plans",
+      light: "Thoughtfully",
+      bold: "Planned floors",
+      lede: "The architect's plan set, floor by floor. Tap a sheet to view it full screen — every size is as marked on the drawings.",
+      sheets: [
+        {
+          t: "1st – 5th floor",
+          s: "Two 3 BHK homes",
+          rooms: [
+            ["Living / dining", `14'0" × 36'6"`],
+            ["Bedroom 1", `13'9" × 19'2"`],
+            ["Bedroom 2", `12'0" × 15'0"`],
+            ["Bedroom 3", `11'1" × 13'0"`],
+            ["Kitchen", `15'6" × 10'6"`],
+            ["Store", `4'6" × 4'6"`],
+            ["Wash yard", `9'9" × 5'9"`],
+            ["Toilet / dressing", `10'3" × 5'0"`],
+            ["Toilet / dressing", `5'0" × 9'0"`],
+            ["Common toilet", `5'1" × 4'5"`],
+            ["Balcony", `14'0" × 5'0"`],
+            ["Private foyer", `9'3" × 6'3"`],
+            ["Vestibule", `3'10" × 6'3"`],
+          ],
+        },
+        {
+          t: "6th floor",
+          s: "4 BHK duplex · lower level",
+          rooms: [
+            ["Drawing room", `14'0" × 19'6"`],
+            ["Bedroom 1", `13'9" × 19'3"`],
+            ["Toilet / dressing", `10'3" × 5'0"`],
+            ["Balcony", `14'0" × 5'0"`],
+            ["Private foyer", `9'3" × 6'3"`],
+            ["Lift foyer", `10'3" × 15'6"`],
+          ],
+        },
+        {
+          t: "7th floor",
+          s: "4 BHK duplex · upper level",
+          rooms: [
+            ["Private terrace", `28'0" × 29'6"`],
+            ["Bedroom 3", `15'0"–17'3" × 13'0"`],
+            ["Bedroom 4", `15'6"–18'0" × 14'0"`],
+            ["Lift foyer", `10'3" × 15'6"`],
+          ],
+        },
+        {
+          t: "Hollow plinth",
+          s: "Parking for 16 cars",
+          rooms: [
+            ["Car parking", "16 cars"],
+            ["Entrance foyer", `10'3" × 15'0"`],
+            ["Driveway", "6 m"],
+            ["Domestic water tank", "33,000 L"],
+            ["Fire water tank", "55,000 L"],
+          ],
+        },
+      ] as { t: string; s: string; rooms: [string, string][] }[],
+      schedule: "Sizes",
+      view: "View full sheet",
+      download: "Download floor plans",
+      note: "Sizes are approximate and as marked on the architect's drawings. Where the two duplexes differ, both sizes are given.",
+    },
+    location: {
+      eyebrow: "03 — Location",
+      light: "Find us at",
+      bold: "Ognaj",
+      lede: "Prima Residency is at Ognaj, Ahmedabad, on an 18 m road. Open the pin in Google Maps for directions to the site.",
+      maps: "Open in Google Maps",
+      mapTitle: "Map of Prima Residency, Ognaj",
+    },
+    contact: {
+      eyebrow: "04 — Contact",
+      options: ["3 BHK", "4 BHK duplex", "Other"],
+      addressLines: ["Prima Residency,", "Ognaj,", "Ahmedabad"],
+      brochure: {
+        eyebrow: "Floor plans",
+        t: "Prima Residency floor plans",
+        b: "The architect's plan set — hollow-plinth parking, the 1st–5th floor 3 BHK plan and both levels of the 4 BHK duplexes — as a PDF.",
+        size: "PDF · 2 MB",
+      },
+    },
   },
 
   home: {
     meta: {
-      title: "Prima · Prima Sky & Prima Residency — 3 BHK Homes & Shops at Bhadaj, Ahmedabad",
+      title: "Prima · Prima Sky & Prima Residency — Homes in Ahmedabad",
       description:
-        "Prima by Shree Balaji Lotus Buildcon LLP — Prima Sky and Prima Residency, 3 BHK homes and shops at Bhadaj, off S.P. Ring Road, Ahmedabad. Choose a project to explore its homes, shops, floor plans and location.",
+        "Prima by Shree Balaji Lotus Buildcon LLP — Prima Sky, 3 BHK homes and shops at Bhadaj, off S.P. Ring Road, and Prima Residency, 3 & 4 BHK homes at Ognaj, Ahmedabad. Choose a project to explore its homes, floor plans and location.",
     },
     light: "Our current",
     bold: "Projects",
     lede: "Thoughtfully planned homes and shops in Ahmedabad. Choose a project to explore its homes, floor plans and location.",
-    residencyPlace: "Bhadaj · Ognaj · Ahmedabad",
+    residencyPlace: "Ognaj · Ahmedabad",
+    residencyTag: "3 & 4 BHK Homes",
     explore: "Explore",
   },
 
