@@ -335,7 +335,7 @@ export const en = {
   backHome: "Home",
 
   residency: {
-    // Only what the architect's plan set (public/prima-residency/ognaj-plans.pdf) states:
+    // Only what the architect's plan set (public/prima-residency/residency-plans.pdf) states:
     // sheet titles, room labels and sizes as printed. Nothing inferred, nothing added.
     meta: {
       title: "Prima Residency · Residential Apartment",

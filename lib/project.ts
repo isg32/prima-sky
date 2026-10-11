@@ -34,12 +34,12 @@ export const brochureDownloadAs = "Prima-Sky-Brochure.pdf";
 
 // Prima Residency (Ognaj) — renders, the architect's plan set and its sheets.
 export const residency = {
-  hero: "/prima-residency/ognaj-corner.jpg",
+  hero: "/prima-residency/residency-corner.jpg",
   images: [
-    "/prima-residency/ognaj-corner.jpg",
-    "/prima-residency/ognaj-front.jpg",
-    "/prima-residency/ognaj-street.jpg",
-    "/prima-residency/ognaj-aerial.jpg",
+    "/prima-residency/residency-corner.jpg",
+    "/prima-residency/residency-front.jpg",
+    "/prima-residency/residency-street.jpg",
+    "/prima-residency/residency-aerial.jpg",
   ],
   // in the order of t.residency.plans.sheets; client's name covered in the title block
   sheets: [
@@ -48,7 +48,7 @@ export const residency = {
     "/prima-residency/plans/duplex-upper.jpg",
     "/prima-residency/plans/hollow-plinth.jpg",
   ],
-  plans: "/prima-residency/ognaj-plans.pdf",
+  plans: "/prima-residency/residency-plans.pdf",
   plansDownloadAs: "Prima-Residency-Floor-Plans.pdf",
 };
 
