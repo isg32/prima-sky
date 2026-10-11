@@ -89,7 +89,7 @@ export default function Plans({ t }: { t: Dict }) {
               <button onClick={() => setBox(idx)} className="btn btn-ghost justify-center !px-5 !py-3">
                 <Icon name="expand" /> {p.view}
               </button>
-              <a href="#contact" onClick={() => enquire(idx === 0 ? t.residency.contact.options[0] : t.residency.contact.options[1])} className="btn btn-primary justify-center !px-5 !py-3">
+              <a href="#contact" onClick={() => enquire(t.residency.contact.options[[0, 1, 1, 2][idx]])} className="btn btn-primary justify-center !px-5 !py-3">
                 {t.cta.enquire}
               </a>
             </div>
