@@ -142,16 +142,19 @@ export default function Contact({ t, project = "sky" }: { t: Dict; project?: Pro
             </p>
 
             <dl data-stagger className="mt-12 grid gap-8 text-[14.5px] sm:grid-cols-2">
-              <div>
-                <dt className="mono mb-2 text-[10.5px] tracking-[0.16em] text-sky-soft uppercase">{c.address}</dt>
-                <dd className="leading-relaxed text-white/85">
-                  {(sky ? c.addressLines : r.addressLines).map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </dd>
-              </div>
+              {/* Prima Residency: no site address in its plan set */}
+              {sky && (
+                <div>
+                  <dt className="mono mb-2 text-[10.5px] tracking-[0.16em] text-sky-soft uppercase">{c.address}</dt>
+                  <dd className="leading-relaxed text-white/85">
+                    {c.addressLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </dd>
+                </div>
+              )}
               <div className="space-y-5">
                 <div>
                   <dt className="mono mb-2 text-[10.5px] tracking-[0.16em] text-sky-soft uppercase">{c.developer}</dt>

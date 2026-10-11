@@ -50,9 +50,6 @@ export const residency = {
   ],
   plans: "/prima-residency/ognaj-plans.pdf",
   plansDownloadAs: "Prima-Residency-Floor-Plans.pdf",
-  geo: { lat: 23.106139, lng: 72.519194 },
-  mapsUrl: "https://www.google.com/maps?q=23.106139,72.519194",
-  embedUrl: "https://maps.google.com/maps?q=23.106139,72.519194&z=16&output=embed",
 };
 
 // ---------------------------------------------------------------------------

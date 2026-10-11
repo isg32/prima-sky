@@ -14,7 +14,7 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
   const ref = useRef<HTMLElement>(null);
   const sky = project === "sky";
   const h = sky ? t.hero : t.residency.hero;
-  const name = `${projectName(t, project)} — ${sky ? t.brandSub : "3 & 4 BHK"}`;
+  const name = `${projectName(t, project)} — ${sky ? t.brandSub : `${h.light} ${h.bold}`}`;
   const brochure = sky ? { href: brochureUrl, as: brochureDownloadAs } : { href: residency.plans, as: residency.plansDownloadAs };
 
   useGSAP(
@@ -102,9 +102,11 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
             </span>
           </p>
         )}
-        <p data-hero-fade className="eyebrow mb-6 !text-white/75">
-          {h.eyebrow}
-        </p>
+        {h.eyebrow && (
+          <p data-hero-fade className="eyebrow mb-6 !text-white/75">
+            {h.eyebrow}
+          </p>
+        )}
         <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] gu:!leading-[1.25] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${h.light} ${h.bold}`}>
           <span className="block" aria-hidden="true">
             {h.light}

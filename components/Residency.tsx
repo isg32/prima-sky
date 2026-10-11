@@ -2,7 +2,6 @@ import Header from "./Header";
 import Intro from "./Intro";
 import StickyBar from "./StickyBar";
 import SmoothScroll from "./motion/SmoothScroll";
-import Location from "./residency/Location";
 import Overview from "./residency/Overview";
 import Plans from "./residency/Plans";
 import Contact from "./sections/Contact";
@@ -12,9 +11,9 @@ import { residencyLd } from "@/lib/meta";
 import { otherLocale, route } from "@/lib/routes";
 
 // sections on this page, labelled with the site-wide nav names
-const SECTIONS = ["overview", "residences", "location", "contact"];
+const SECTIONS = ["overview", "residences", "contact"];
 
-/** The Prima Residency (Ognaj) page — same frame and motion as Prima Sky, its own content. */
+/** The Prima Residency page — same frame and motion as Prima Sky; content only from its plan set. */
 export default function Residency({ t }: { t: Dict }) {
   const wa = t.residency.whatsappMessage;
   return (
@@ -41,7 +40,6 @@ export default function Residency({ t }: { t: Dict }) {
         <Hero t={t} project="residency" />
         <Overview t={t} />
         <Plans t={t} />
-        <Location t={t} />
         <Contact t={t} project="residency" />
       </main>
       <StickyBar t={t} waText={wa} />

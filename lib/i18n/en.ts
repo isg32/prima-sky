@@ -335,42 +335,42 @@ export const en = {
   backHome: "Home",
 
   residency: {
-    // Everything here is read off the architect's plan set (public/prima-residency/ognaj-plans.pdf):
-    // sheet titles, room labels and sizes as printed. Nothing is added that the drawings do not show.
+    // Only what the architect's plan set (public/prima-residency/ognaj-plans.pdf) states:
+    // sheet titles, room labels and sizes as printed. Nothing inferred, nothing added.
     meta: {
-      title: "Prima Residency · 3 & 4 BHK Residential Apartment at Ognaj, Ahmedabad",
+      title: "Prima Residency · Residential Apartment",
       description:
-        "Prima Residency by Shree Balaji Lotus Buildcon LLP — a residential apartment at Ognaj, Ahmedabad: 3 BHK homes on the 1st to 5th floors, 4 BHK homes on the 6th and 7th floors with an internal staircase and a 28′0″ × 29′6″ terrace, and hollow-plinth parking for 16 cars on an 18 m road.",
-      ogAlt: "Prima Residency at Ognaj, Ahmedabad",
+        "Prima Residency — residential apartment: 1st to 5th floor, 6th floor and 7th floor plans, a staircase in on the 6th and 7th floors, a 28′0″ × 29′6″ terrace on the 7th floor, and hollow-plinth parking for 16 cars on an 18 m road.",
+      ogAlt: "Prima Residency",
     },
-    whatsappMessage: "Hi, I'm interested in Prima Residency (3 & 4 BHK homes) at Ognaj, Ahmedabad. Please share details.",
+    whatsappMessage: "Hi, I'm interested in Prima Residency. Please share details.",
     hero: {
-      eyebrow: "Ognaj · Ahmedabad",
+      eyebrow: "",
       light: "Residential",
       bold: "Apartment",
-      sub: "3 BHK homes on the 1st to 5th floors and 4 BHK homes across the 6th and 7th floors, with hollow-plinth parking for 16 cars on an 18 m road.",
+      sub: "1st to 5th floor, 6th floor and 7th floor plans, with hollow-plinth parking for 16 cars on an 18 m road.",
       facts: [
-        { k: "1st – 5th floor", v: "3", em: "BHK" },
-        { k: "6th – 7th floor", v: "4", em: "BHK" },
         { k: "Lifts", v: "2", em: "lifts" },
         { k: "Parking", v: "16", em: "cars" },
         { k: "Road", v: "18", em: "m" },
         { k: "Driveway", v: "6", em: "m" },
+        { k: "Domestic tank", v: "33,000", em: "L" },
+        { k: "Fire tank", v: "55,000", em: "L" },
       ],
       scroll: "Scroll",
     },
     overview: {
       eyebrow: "01 — Overview",
-      light: "Homes at",
-      bold: "Ognaj",
-      lede: "A residential apartment at Ognaj, Ahmedabad. The 1st to 5th floors have 3 BHK homes; the 6th and 7th floors have 4 BHK homes with an internal staircase and a 28′0″ × 29′6″ terrace on the 7th floor. Parking is on the hollow plinth, off a 6 m driveway from the 18 m road.",
+      light: "Residence",
+      bold: "Apartment",
+      lede: "The 1st to 5th floors share one plan. The 6th and 7th floors have a staircase in, with a 28′0″ × 29′6″ terrace on the 7th floor. Parking for 16 cars is on the hollow plinth, off a 6 m driveway from the 18 m road.",
       facts: [
-        { k: "Configuration", v: "3 & 4 BHK" },
         { k: "Lifts", v: "2" },
         { k: "Parking", v: "16 cars" },
         { k: "Road", v: "18 m" },
         { k: "Driveway", v: "6 m" },
         { k: "7th floor terrace", v: `28'0" × 29'6"` },
+        { k: "Domestic tank", v: "33,000 L" },
       ],
       alts: ["Corner view of Prima Residency", "Front elevation", "Street view", "Aerial view"],
       note: "Renders are artistic impressions.",
@@ -383,7 +383,7 @@ export const en = {
       sheets: [
         {
           t: "1st – 5th floor",
-          s: "3 BHK",
+          s: "Living / dining · Bedroom 1–3",
           rooms: [
             ["Living / dining", `14'0" × 36'6"`],
             ["Bedroom 1", `13'9" × 19'2"`],
@@ -403,7 +403,7 @@ export const en = {
         },
         {
           t: "6th floor",
-          s: "4 BHK · staircase in",
+          s: "Drawing · Bedroom 1–2 · staircase in",
           rooms: [
             ["Drawing", `14'0" × 19'6"`],
             ["Bedroom 1", `13'9" × 19'3"`],
@@ -416,7 +416,7 @@ export const en = {
         },
         {
           t: "7th floor",
-          s: "4 BHK · terrace",
+          s: "Bedroom 3–4 · terrace",
           rooms: [
             ["Terrace", `28'0" × 29'6"`],
             ["Bedroom 3", `17'3" × 13'0" · 15'0" × 13'0"`],
@@ -441,18 +441,9 @@ export const en = {
       download: "Download floor plans",
       note: "Sizes are as marked on the architect's drawings. Where the two homes on a floor differ, both sizes are given.",
     },
-    location: {
-      eyebrow: "03 — Location",
-      light: "Find us at",
-      bold: "Ognaj",
-      lede: "Prima Residency is at Ognaj, Ahmedabad, on an 18 m road. Open the pin in Google Maps for directions to the site.",
-      maps: "Open in Google Maps",
-      mapTitle: "Map of Prima Residency, Ognaj",
-    },
     contact: {
-      eyebrow: "04 — Contact",
-      options: ["3 BHK", "4 BHK", "Other"],
-      addressLines: ["Prima Residency,", "Ognaj,", "Ahmedabad"],
+      eyebrow: "03 — Contact",
+      options: ["1st – 5th floor", "6th & 7th floor", "Other"],
       brochure: {
         eyebrow: "Floor plans",
         t: "Prima Residency floor plans",
@@ -466,13 +457,12 @@ export const en = {
     meta: {
       title: "Prima · Prima Sky & Prima Residency — Homes in Ahmedabad",
       description:
-        "Prima by Shree Balaji Lotus Buildcon LLP — Prima Sky, 3 BHK homes and shops at Bhadaj, off S.P. Ring Road, and Prima Residency, 3 & 4 BHK homes at Ognaj, Ahmedabad. Choose a project to explore its homes, floor plans and location.",
+        "Prima by Shree Balaji Lotus Buildcon LLP — Prima Sky, 3 BHK homes and shops at Bhadaj, off S.P. Ring Road, and Prima Residency, a residential apartment. Choose a project to explore its homes, floor plans and location.",
     },
     light: "Our current",
     bold: "Projects",
     lede: "Thoughtfully planned homes and shops in Ahmedabad. Choose a project to explore its homes, floor plans and location.",
-    residencyPlace: "Ognaj · Ahmedabad",
-    residencyTag: "3 & 4 BHK Homes",
+    residencyTag: "Residential Apartment",
     explore: "Explore",
   },
 

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { Dict } from "./i18n/en";
-import { SITE_URL, contact, residency } from "./project";
+import { SITE_URL, contact } from "./project";
 import { route, type Page } from "./routes";
 
 export const viewport: Viewport = {
@@ -63,12 +63,8 @@ export function residencyLd(t: Dict) {
     description: t.residency.meta.description,
     url: `${SITE_URL}${route(t.locale, "residency")}`,
     image: `${SITE_URL}/prima-residency/og.jpg`,
-    numberOfAccommodationUnits: 12,
     telephone: contact.phoneIntl,
     email: contact.email,
-    hasMap: residency.mapsUrl,
-    geo: { "@type": "GeoCoordinates", latitude: residency.geo.lat, longitude: residency.geo.lng },
-    address: { "@type": "PostalAddress", addressLocality: "Ognaj, Ahmedabad", addressRegion: "Gujarat", addressCountry: "IN" },
     brand: { "@type": "Organization", name: "Shree Balaji Lotus Buildcon LLP", email: contact.email },
   };
 }

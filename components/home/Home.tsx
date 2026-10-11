@@ -159,9 +159,11 @@ export default function Home({ t }: { t: Dict }) {
                           <h2 className="text-[clamp(32px,3.6vw,52px)] leading-[0.95] tracking-wide uppercase gu:leading-[1.25] gu:tracking-normal">
                             <span className="font-light">{first}</span> <span className="font-bold">{rest.join(" ")}</span>
                           </h2>
-                          <p className="flex items-center gap-2 text-[13px] text-white/75">
-                            <Icon name="pin" size={16} /> {c.key === "residency" ? h.residencyPlace : t.hero.eyebrow}
-                          </p>
+                          {c.key === "sky" && (
+                            <p className="flex items-center gap-2 text-[13px] text-white/75">
+                              <Icon name="pin" size={16} /> {t.hero.eyebrow}
+                            </p>
+                          )}
                           {/* the entrance tween moves this wrapper: .btn's own transform transition would leave it stuck mid-way */}
                           <div className="mt-2">
                             <span className="btn btn-white">
