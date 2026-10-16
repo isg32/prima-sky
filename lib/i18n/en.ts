@@ -243,8 +243,8 @@ export const en = {
         id: "spiritual",
         t: "Spiritual",
         items: [
-          ["Mahakali Mata Temple", "½ min", "50 m"],
-          ["Shiv Temple", "½ min", "50 m"],
+          ["Mahakali Mata Temple", "½ min", "50 mtrs"],
+          ["Shiv Temple", "½ min", "50 mtrs"],
           ["Shree Swaminarayan Temple", "3 min", "1.4 km"],
           ["Brahmakumari Meditation Centre", "6 min", "3 km"],
           ["Hare Krishna Mandir", "8 min", "3.8 km"],
@@ -276,8 +276,8 @@ export const en = {
         id: "attractions",
         t: "Attractions",
         items: [
-          ["Bhadaj Lake & Garden", "2 min", "500 m"],
-          ["Science Park area", "2 min", "500 m"],
+          ["Bhadaj Lake & Garden", "2 min", "500 mtrs"],
+          ["Science Park area", "2 min", "500 mtrs"],
           ["Science City", "4 min", "1.7 km"],
           ["Cricket ground / box cricket / pickleball", "5 min", ""],
           ["Club Babylon", "6 min", "3.3 km"],

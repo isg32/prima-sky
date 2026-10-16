@@ -81,8 +81,11 @@ export default function Location({ t }: { t: Dict }) {
                 <li key={name} className="leader">
                   <b className="font-sans text-[14.5px] font-medium">{name}</b>
                   <i />
-                  <span className="whitespace-nowrap text-blue">{time}</span>
-                  {dist && <span className="w-16 text-right whitespace-nowrap text-slate">{dist}</span>}
+                  {/* phones: time over distance, so spelled-out units still fit */}
+                  <span className="flex shrink-0 flex-col items-end gap-0.5 sm:flex-row sm:items-baseline sm:gap-2.5">
+                    <span className="whitespace-nowrap text-blue">{time}</span>
+                    {dist && <span className="min-w-16 text-right whitespace-nowrap text-slate">{dist}</span>}
+                  </span>
                 </li>
               ))}
             </ul>
