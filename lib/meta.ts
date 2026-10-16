@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export function buildMetadata(t: Dict, page: Page): Metadata {
-  const m = page === "home" ? t.home.meta : page === "previous" ? t.previous.meta : page === "residency" ? t.residency.meta : t.meta;
+  const m = { home: t.home.meta, previous: t.previous.meta, giving: t.giving.meta, residency: t.residency.meta, sky: t.meta }[page];
   const path = route(t.locale, page);
   const og = page === "residency" ? { url: "/prima-residency/og.jpg", alt: t.residency.meta.ogAlt } : { url: "/og.jpg", alt: t.meta.ogAlt };
   return {

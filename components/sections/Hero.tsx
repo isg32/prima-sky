@@ -107,7 +107,7 @@ export default function Hero({ t, project }: { t: Dict; project: ProjectKey }) {
             {h.eyebrow}
           </p>
         )}
-        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] gu:!leading-[1.25] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${h.light} ${h.bold}`}>
+        <h1 data-hero-title className="display !text-[clamp(42px,11.5vw,132px)] !leading-[0.95] gu:!leading-[1.08] md:!text-[clamp(40px,8.4vw,132px)]" aria-label={`${h.light} ${h.bold}`}>
           <span className="block" aria-hidden="true">
             {h.light}
           </span>

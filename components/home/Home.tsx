@@ -97,6 +97,7 @@ export default function Home({ t }: { t: Dict }) {
         nav={[
           ...CARDS.map((c) => ({ href: route(t.locale, c.key), label: projectName(t, c.key) })),
           { href: route(t.locale, "previous"), label: t.previousLink.cta },
+          { href: route(t.locale, "giving"), label: t.giving.cta },
         ]}
         homeHref={route(t.locale, "home")}
         switchHref={route(otherLocale(t.locale), "home")}
@@ -118,7 +119,7 @@ export default function Home({ t }: { t: Dict }) {
                 <p data-home-fade className="eyebrow mb-6 !text-white/75">
                   {t.developerName}
                 </p>
-                <h1 data-home-title className="display !text-[clamp(38px,5.4vw,80px)] !leading-[0.95] gu:!leading-[1.25]" aria-label={`${h.light} ${h.bold}`}>
+                <h1 data-home-title className="display !text-[clamp(38px,5.4vw,80px)] !leading-[0.95] gu:!leading-[1.08]" aria-label={`${h.light} ${h.bold}`}>
                   <span className="block" aria-hidden="true">
                     {h.light}
                   </span>
@@ -159,11 +160,9 @@ export default function Home({ t }: { t: Dict }) {
                           <h2 className="text-[clamp(32px,3.6vw,52px)] leading-[0.95] tracking-wide uppercase gu:leading-[1.25] gu:tracking-normal">
                             <span className="font-light">{first}</span> <span className="font-bold">{rest.join(" ")}</span>
                           </h2>
-                          {c.key === "sky" && (
-                            <p className="flex items-center gap-2 text-[13px] text-white/75">
-                              <Icon name="pin" size={16} /> {t.hero.eyebrow}
-                            </p>
-                          )}
+                          <p className="flex items-center gap-2 text-[13px] text-white/75">
+                            <Icon name="pin" size={16} /> {c.key === "sky" ? t.hero.eyebrow : h.residencyPlace}
+                          </p>
                           {/* the entrance tween moves this wrapper: .btn's own transform transition would leave it stuck mid-way */}
                           <div className="mt-2">
                             <span className="btn btn-white">
@@ -179,11 +178,18 @@ export default function Home({ t }: { t: Dict }) {
               })}
             </ul>
 
-            <div data-home-previous className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-              <Link href={route(t.locale, "previous")} className="btn btn-ghost self-start !px-5 !py-3 !text-[12px] max-sm:!whitespace-normal">
-                {t.previousLink.cta} <Icon name="arrow" />
-              </Link>
-              <p className="max-w-[44ch] text-[12px] leading-snug text-white/50">{t.previousLink.note}</p>
+            <div data-home-previous className="mt-7 grid gap-5 md:grid-cols-2 md:gap-8">
+              {[
+                { href: route(t.locale, "previous"), cta: t.previousLink.cta, note: t.previousLink.note },
+                { href: route(t.locale, "giving"), cta: t.giving.cta, note: t.giving.note },
+              ].map((l) => (
+                <div key={l.href} className="flex flex-col gap-2.5 xl:flex-row xl:items-center xl:gap-5">
+                  <Link href={l.href} className="btn btn-ghost self-start !px-5 !py-3 !text-[12px] max-sm:!whitespace-normal">
+                    {l.cta} <Icon name="arrow" />
+                  </Link>
+                  <p className="max-w-[36ch] text-[12px] leading-snug text-white/50">{l.note}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

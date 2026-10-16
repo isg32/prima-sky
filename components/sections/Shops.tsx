@@ -54,8 +54,11 @@ export default function Shops({ t }: { t: Dict }) {
 
         <ul data-stagger className="mt-14 grid grid-cols-2 gap-px bg-rule md:grid-cols-4">
           {s.facts.map((f) => (
-            <li key={f.l} className="bg-white py-6 pr-4">
-              <span className="text-grad block text-[clamp(28px,3.4vw,46px)] leading-none font-bold">{f.v}</span>
+            <li key={f.l} className="bg-white px-4 py-6 text-center">
+              <span className="text-grad block text-[clamp(28px,3.4vw,46px)] leading-none font-bold whitespace-nowrap">
+                {f.v}
+                {f.u && <span className="ml-1.5 text-[0.42em] font-semibold">{f.u}</span>}
+              </span>
               <span className="mt-2 block text-[12px] font-semibold tracking-[0.12em] text-slate uppercase">{f.l}</span>
             </li>
           ))}

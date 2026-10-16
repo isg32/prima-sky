@@ -66,7 +66,7 @@ export const en = {
         icon: "pin",
         text: "Located amidst the serene surroundings of Mahakali & Shiv Temple, Lake Garden, Science City & Science Park at Bhadaj, S.P. Ring Road",
       },
-      { icon: "plan", text: "Thoughtfully planned 3 BHK residences & commercial" },
+      { icon: "plan", text: "Thoughtfully planned 3 BHK residences & commercial shops" },
       { icon: "sofa", text: "Grand entrance foyer" },
       {
         icon: "family",
@@ -78,7 +78,7 @@ export const en = {
     usps: [
       { v: "No", l: "Project without TDR" },
       { v: "3-side", l: "Project with open view" },
-      { v: "50 m", l: "In the vicinity of temples & garden" },
+      { v: "50", u: "meters", l: "In the vicinity of temples & garden" },
       { v: "15′", l: "Height basement" },
       { v: "12′", l: "Height shops" },
     ],
@@ -163,7 +163,7 @@ export const en = {
     enquire: "Enquire about this shop",
     facts: [
       { v: "12′", l: "Shop height" },
-      { v: "18 m", l: "Roads on two sides" },
+      { v: "18", u: "meters", l: "Roads on two sides" },
       { v: "15", l: "Shops in campus" },
       { v: "P", l: "Retail / visitor parking" },
     ],
@@ -346,8 +346,8 @@ export const en = {
     whatsappMessage: "Hi, I'm interested in Prima Residency. Please share details.",
     hero: {
       eyebrow: "",
-      light: "Residential",
-      bold: "Apartment",
+      light: "A better way",
+      bold: "To live",
       sub: "1st to 5th floor, 6th floor and 7th floor plans, with hollow-plinth parking for 16 cars on an 18 m road.",
       facts: [
         { k: "Lifts", v: "2", em: "lifts" },
@@ -462,8 +462,42 @@ export const en = {
     light: "Our current",
     bold: "Projects",
     lede: "Thoughtfully planned homes and shops in Ahmedabad. Choose a project to explore its homes, floor plans and location.",
+    residencyPlace: "Ognaj · Ahmedabad",
     residencyTag: "Residential Apartment",
     explore: "Explore",
+  },
+
+  giving: {
+    cta: "Giving Back to Society",
+    note: "Free property-buying guidance, a few hours every week.",
+    meta: {
+      title: "Giving Back to Society · Prima",
+      description:
+        "Free property-buying guidance from Prima for a few hours every week — general, no-obligation help for anyone making a property-related decision.",
+    },
+    eyebrow: "Prima · Community initiative",
+    title: "Giving Back to Society",
+    lede: "Buying a home is among the most significant decisions a family makes. As part of our commitment to the community, Prima sets aside a few hours every week to offer free guidance to anyone who would like help with a property-related decision — whether or not they are considering one of our projects.",
+    helpTitle: "Where we can help",
+    help: [
+      "Understanding the home-buying process, from shortlisting to registration",
+      "Points to weigh when comparing locations, layouts and projects",
+      "Questions to ask a developer, and the approvals and documents to look for, such as RERA registration",
+      "A general overview of costs beyond the property price, such as stamp duty, registration charges and GST",
+      "Planning site visits and what to look for on site",
+    ],
+    howTitle: "How it works",
+    how: [
+      "Guidance is free of charge and offered for a few hours every week.",
+      "Sessions are by appointment and subject to availability. Message us on WhatsApp to request one.",
+      "There is no obligation of any kind, and no expectation that you consider a Prima project.",
+    ],
+    contactTitle: "Request free guidance",
+    contactBody: "Message us on WhatsApp with a short note about what you would like help with, and we will arrange a convenient time.",
+    whatsappMessage: "Hello, I would like to request a free property-buying guidance session.",
+    disclaimerTitle: "Please note",
+    disclaimer:
+      "This initiative offers general information and guidance only. It is not legal, financial, tax or investment advice, and is not a recommendation to buy, sell or invest in any particular property. As a real-estate developer, we will always make clear when a discussion concerns one of our own projects. Please verify all information independently and consult suitably qualified professionals — such as an advocate, a chartered accountant or a financial adviser — before making any decision. Prima accepts no liability for decisions made on the basis of this guidance.",
   },
 
   previousLink: { cta: "Previous Associated Projects", note: "Our current partners were associated with these earlier projects." },

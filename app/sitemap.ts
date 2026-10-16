@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["sky", 0.9],
     ["residency", 0.9],
     ["previous", 0.5],
+    ["giving", 0.5],
   ];
   return pages.flatMap(([page, priority]) => {
     const languages = { "en-IN": `${SITE_URL}${route("en", page)}`, "gu-IN": `${SITE_URL}${route("gu", page)}` };

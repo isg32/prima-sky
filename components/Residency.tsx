@@ -34,6 +34,7 @@ export default function Residency({ t }: { t: Dict }) {
         menuExtra={[
           { href: route(t.locale, "home"), label: t.backHome },
           { href: route(t.locale, "previous"), label: t.previousLink.cta },
+          { href: route(t.locale, "giving"), label: t.giving.cta },
         ]}
       />
       <main id="main">

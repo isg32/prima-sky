@@ -113,9 +113,7 @@ img {
     background: var(--grad);
     flex: none;
   }
-  /* wide tracking pulls Gujarati letters and their vowel signs apart */
   html[lang^="gu"] .eyebrow {
-    letter-spacing: 0.02em;
     font-size: 12px;
   }
   .on-dark .eyebrow {
@@ -299,16 +297,23 @@ img {
   }
 }
 
+/* Gujarati: any letter-spacing pulls letters away from their vowel signs, so the words
+   look broken. Unlayered, so it outranks every tracking-* utility on the Gujarati pages. */
+html[lang^="gu"] body * {
+  letter-spacing: normal;
+}
+
 /* SplitText line masks */
 .split-line {
   padding-bottom: 0.06em;
   margin-bottom: -0.06em;
 }
-/* Gujarati vowel signs (િ ે ો ં ુ ૂ) reach well above and below the letters; the mask
-   has to make room for them or they are cut off, during the reveal and after it */
-html[lang^="gu"] .split-line {
-  padding-block: 0.28em;
-  margin-block: -0.28em;
+/* Gujarati vowel signs (િ ે ો ં ુ ૂ) reach well above and below the letters. Rather than
+   growing the mask (which spaces the lines apart), clip a little beyond its box: the signs
+   stay visible during and after the reveal, and the lines keep their line-height. */
+html[lang^="gu"] .split-line-mask {
+  overflow: visible !important;
+  clip-path: inset(-0.38em -50vw -0.32em -50vw);
 }
 
 @keyframes pulse-ring {

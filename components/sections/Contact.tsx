@@ -140,6 +140,12 @@ export default function Contact({ t, project = "sky" }: { t: Dict; project?: Pro
             <p data-fade className="mt-3 text-[11px] text-white/40">
               {t.previousLink.note}
             </p>
+            <Link data-fade href={route(t.locale, "giving")} className="btn btn-ghost mt-5 w-full justify-center sm:w-auto">
+              {t.giving.cta} <Icon name="arrow" />
+            </Link>
+            <p data-fade className="mt-3 text-[11px] text-white/40">
+              {t.giving.note}
+            </p>
 
             <dl data-stagger className="mt-12 grid gap-8 text-[14.5px] sm:grid-cols-2">
               {/* Prima Residency: no site address in its plan set */}
